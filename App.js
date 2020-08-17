@@ -2,13 +2,37 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Feed } from './pages/feed/feed';
+
+// Navigator types, used for title bar and for tabs
+const Tab = createMaterialBottomTabNavigator();
+const Stack = createStackNavigator();
+
+function TabBar() {
+  return (
+    <Tab.Navigator
+      initialRouteName="Home"
+      activeColor="#f0edf6"
+      inactiveColor="#3e2465"
+      barStyle={{ backgroundColor: '#694fad' }}
+    >
+      <Tab.Screen name="Home" component={Feed} />
+    </Tab.Navigator>
+  );
+}
 
 export default function App() {
   return (
     <NavigationContainer>
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={TabBar}
+          options={{ title: 'ACNH FishTrack' }}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
