@@ -8,6 +8,7 @@ import { Feed } from './pages/feed/feed';
 import { AllFish } from './pages/allfish/allfish';
 import { LeaderBoards } from './pages/leaderboards/leaderboards';
 import { Settings } from './pages/settings/settings';
+import { Map } from './pages/map/map';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -40,6 +41,16 @@ function TabBar() {
         component={AllFish}
       />
       <Tab.Screen
+        name="Map"
+        options={{
+          tabBarColor: '#ffb1c1',
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="md-map" color="white" size={26} />
+          ),
+        }}
+        component={Map}
+      />
+      <Tab.Screen
         name="Leaders"
         options={{
           tabBarColor: '#ff9391',
@@ -48,16 +59,6 @@ function TabBar() {
           ),
         }}
         component={LeaderBoards}
-      />
-      <Tab.Screen
-        name="Settings"
-        options={{
-          tabBarColor: '#ffb1c1',
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="md-settings" color="white" size={26} />
-          ),
-        }}
-        component={Settings}
       />
     </Tab.Navigator>
   );
@@ -71,7 +72,24 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={TabBar}
-          options={{ title: 'ACNH FishTrack' }}
+          options={{
+            title: 'ACNH FishTrack',
+            headerRight: () => (
+              <Ionicons
+                onPress={() => alert('test')}
+                name="md-settings"
+                color="black"
+                size={26}
+              />
+            ),
+          }}
+        />
+        <Stack.Screen
+          name="Settings"
+          component={Settings}
+          options={{
+            title: 'Settings'
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
