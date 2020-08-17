@@ -6,11 +6,14 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { createStackNavigator } from '@react-navigation/stack';
 import { Feed } from './pages/feed/feed';
 import { AllFish } from './pages/allfish/allfish';
+import { LeaderBoards } from './pages/leaderboards/leaderboards';
+import { Settings } from './pages/settings/settings';
 
 // Navigator types, used for title bar and for tabs
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
 
+// Tabs are cool
 function TabBar() {
   return (
     <Tab.Navigator
@@ -21,10 +24,13 @@ function TabBar() {
     >
       <Tab.Screen name="Home" component={Feed} />
       <Tab.Screen name="All Fish" component={AllFish} />
+      <Tab.Screen name="Leaders" component={LeaderBoards} />
+      <Tab.Screen name="Settings" component={Settings} />
     </Tab.Navigator>
   );
 }
 
+// Main app itself, stack container within a tab
 export default function App() {
   return (
     <NavigationContainer>
