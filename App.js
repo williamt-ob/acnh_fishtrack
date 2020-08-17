@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Feed } from './pages/feed/feed';
+import { AllFish } from './pages/allfish/allfish';
 
 // Navigator types, used for title bar and for tabs
 const Tab = createMaterialBottomTabNavigator();
@@ -19,6 +20,7 @@ function TabBar() {
       barStyle={{ backgroundColor: '#694fad' }}
     >
       <Tab.Screen name="Home" component={Feed} />
+      <Tab.Screen name="All Fish" component={AllFish} />
     </Tab.Navigator>
   );
 }
