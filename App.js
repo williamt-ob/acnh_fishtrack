@@ -65,36 +65,34 @@ function TabBar() {
 }
 
 // Main app itself, stack container within a tab
-export default function App() {
+const App = ({ navigation, ...rest }) => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={TabBar}
+        options={{
+          title: 'ACNH FishTrack',
+        }}
+      />
+      <Stack.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          title: 'Settings',
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
+
+export default StackWrapper = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={TabBar}
-          options={{
-            title: 'ACNH FishTrack',
-            headerRight: () => (
-              <Ionicons
-                onPress={() => alert('test')}
-                name="md-settings"
-                color="black"
-                size={26}
-              />
-            ),
-          }}
-        />
-        <Stack.Screen
-          name="Settings"
-          component={Settings}
-          options={{
-            title: 'Settings'
-          }}
-        />
-      </Stack.Navigator>
+      <App />
     </NavigationContainer>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
