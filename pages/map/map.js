@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Picker, StyleSheet, Text, View } from 'react-native';
 
 const uniqueAreas = [
   'River',
@@ -12,8 +12,20 @@ const uniqueAreas = [
   'Sea (rainy days)',
 ];
 
+const catchFilterStatusOptions = ['All', 'Uncaught'];
+
 export const Map = () => {
   const [catchFilterStatus, setCatchFilterStatus] = useState('All');
 
-  return <Text>Map Page</Text>;
+  return (
+    <Picker
+      selectedValue={catchFilterStatus}
+      style={{ height: 50, width: 150 }}
+      onValueChange={(itemValue, itemIndex) => setCatchFilterStatus(itemValue)}
+    >
+      {catchFilterStatusOptions.map((option) => (
+        <Picker.Item key={option} label={option} value={option} />
+      ))}
+    </Picker>
+  );
 };
