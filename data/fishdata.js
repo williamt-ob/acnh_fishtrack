@@ -1,15 +1,6 @@
 // Data sourced from https://www.polygon.com/animal-crossing-new-horizons-switch-acnh-guide/2020/3/23/21190775/fish-locations-times-month-day-list-critterpedia
 
 export const fishData = {
-  Fish: {
-    name: 'Fish',
-    location: 'Location',
-    shadowSize: 'Shadow Size',
-    value: 'Value',
-    time: 'Time',
-    northDate: 'NorthDate',
-    southDate: 'SouthDate',
-  },
   Bitterling: {
     name: 'Bitterling',
     location: 'River',
