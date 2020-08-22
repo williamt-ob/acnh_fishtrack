@@ -29,6 +29,7 @@ export const AllFish = () => {
 
   const caughtPress = async (value) => {
     console.log('here');
+    setLoading(true);
     try {
       const newCaught = { ...caughtFish };
       newCaught[value] = {};
@@ -38,6 +39,7 @@ export const AllFish = () => {
     } catch (e) {
       console.log(e);
     } finally {
+      setLoading(false);
     }
   };
 
