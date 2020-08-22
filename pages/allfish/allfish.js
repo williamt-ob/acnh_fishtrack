@@ -108,6 +108,7 @@ export const AllFish = () => {
         <Text>Loading...</Text>
       ) : (
         <>
+          {/* TODO: incorporate some way to sort ascending/descending, no one wants price ascending */}
           <ScrollView contentContainerStyle={styles.allFishScroll}>
             {Object.keys(fishData)
               .filter((key) => _handleFilters(key))
