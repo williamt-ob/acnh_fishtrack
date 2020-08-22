@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { ScrollView, Picker, StyleSheet, Text, View } from 'react-native';
 import { fishData } from '../../data/fishdata';
 import { FishEntry } from '../../components/FishEntry';
+import { FishModal } from '../../components/FishModal';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const sortOptions = ['Value', 'Name', 'Catchable'];
@@ -11,6 +12,8 @@ export const AllFish = () => {
   const [caughtFish, setCaughtFish] = useState({});
   const [sortBy, setSortBy] = useState('Name');
   const [loading, setLoading] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedFishData, setSelectedFishData] = useState({});
 
   useEffect((state) => {
     const inner = async (state) => {
@@ -43,6 +46,11 @@ export const AllFish = () => {
     }
   };
 
+  const entryPress = async (key) => {
+    setSelectedFishData(fishData[key]);
+    setModalOpen(true);
+  };
+
   return (
     <>
       <Picker
@@ -54,6 +62,12 @@ export const AllFish = () => {
           <Picker.Item key={option} label={option} value={option} />
         ))}
       </Picker>
+
+      <FishModal
+        open={modalOpen}
+        fishData={selectedFishData}
+        handleClose={() => setModalOpen(false)}
+      />
 
       {loading ? (
         <Text>Loading...</Text>
@@ -67,6 +81,7 @@ export const AllFish = () => {
                   fishData={fishData[key]}
                   key={key}
                   pressAction={() => caughtPress(fishData[key].name)}
+                  openAction={() => entryPress(key)}
                 ></FishEntry>
               ))}
           </ScrollView>

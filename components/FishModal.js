@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { useState } from 'react';
 import {
-  Picker,
+  Modal,
   StyleSheet,
   Text,
   View,
@@ -9,14 +9,14 @@ import {
   Button,
 } from 'react-native';
 
-export const FishEntry = ({ fishData, openAction, pressAction, ...rest }) => {
+export const FishModal = ({ fishData, open, handleClose,...rest }) => {
   return (
-    <View style={styles.entryView}>
-      <TouchableHighlight onPress={openAction}>
+    <Modal style={styles.entryView} visible={open}>
+      <TouchableHighlight>
         <Text>{fishData.name}</Text>
       </TouchableHighlight>
-      <Button title="Caught" onPress={pressAction} />
-    </View>
+      <Button title="Close" onPress={handleClose} />
+    </Modal>
   );
 };
 
