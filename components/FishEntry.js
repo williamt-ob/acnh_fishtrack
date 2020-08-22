@@ -11,14 +11,17 @@ import {
 
 export const FishEntry = ({ fishData, pressAction, ...rest }) => {
   return (
-    <TouchableHighlight onPress={pressAction}>
-      <Text>{fishData.name}</Text>
-    </TouchableHighlight>
+    <View style={styles.entryView}>
+      <TouchableHighlight>
+        <Text>{fishData.name}</Text>
+      </TouchableHighlight>
+      <Button title="Caught" onPress={pressAction} />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  allFishScroll: {
-    //paddingVertical: 20,
+  entryView: {
+    flexDirection: 'row',
   },
 });

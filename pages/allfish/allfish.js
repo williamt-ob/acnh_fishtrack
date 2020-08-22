@@ -52,17 +52,24 @@ export const AllFish = () => {
           <Picker.Item key={option} label={option} value={option} />
         ))}
       </Picker>
-      <ScrollView contentContainerStyle={styles.allFishScroll}>
-        {Object.keys(fishData)
-          .filter((key) => !(key in caughtFish))
-          .map((key) => (
-            <FishEntry
-              fishData={fishData[key]}
-              key={key}
-              pressAction={() => caughtPress(fishData[key].name)}
-            ></FishEntry>
-          ))}
-      </ScrollView>
+
+      {loading ? (
+        <Text>Loading...</Text>
+      ) : (
+        <>
+          <ScrollView contentContainerStyle={styles.allFishScroll}>
+            {Object.keys(fishData)
+              .filter((key) => !(key in caughtFish))
+              .map((key) => (
+                <FishEntry
+                  fishData={fishData[key]}
+                  key={key}
+                  pressAction={() => caughtPress(fishData[key].name)}
+                ></FishEntry>
+              ))}
+          </ScrollView>
+        </>
+      )}
     </>
   );
 };
