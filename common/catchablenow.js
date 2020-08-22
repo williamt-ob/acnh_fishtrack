@@ -25,7 +25,7 @@ export const isCatchable = (fishData) => {
   const today = new Date();
 
   const catchableToday = _isCatchableToday(fishData, today);
-  // Only check now if today is good, otherwise disregard
+  // Only check now if today is good, otherwise shortcircuit
   const catchableNow = catchableToday
     ? _isCatchableRightNow(fishData, today)
     : false;

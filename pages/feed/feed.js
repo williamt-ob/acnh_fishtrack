@@ -14,6 +14,9 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 export const Feed = () => {
 
+  //TODO: make the hemisphere dynamic/an option
+  const hemisphere = 'north';
+
   // Object holding caught fish info
   const [caughtFish, setCaughtFish] = useState({});
   // For setting sort type
