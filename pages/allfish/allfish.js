@@ -5,8 +5,9 @@ import { fishData } from '../../data/fishdata';
 import { FishEntry } from '../../components/FishEntry';
 import { FishModal } from '../../components/FishModal';
 import AsyncStorage from '@react-native-community/async-storage';
+// TODO: import CheckBox from '@react-native-community/react-native-checkbox';
 
-const sortOptions = ['Value', 'Name', 'Catchable'];
+const sortOptions = ['Value', 'Name'];
 
 export const AllFish = () => {
   const [caughtFish, setCaughtFish] = useState({});
