@@ -20,7 +20,7 @@ export const AllFish = () => {
   // Object holding caught fish info
   const [caughtFish, setCaughtFish] = useState({});
   // For setting sort type
-  const [sortBy, setSortBy] = useState('Name');
+  const [sortBy, setSortBy] = useState('name');
 
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -111,6 +111,7 @@ export const AllFish = () => {
           <ScrollView contentContainerStyle={styles.allFishScroll}>
             {Object.keys(fishData)
               .filter((key) => _handleFilters(key))
+              .sort((a, b) => fishData[a][sortBy] > fishData[b][sortBy])
               .map((key) => (
                 <FishEntry
                   fishData={fishData[key]}
