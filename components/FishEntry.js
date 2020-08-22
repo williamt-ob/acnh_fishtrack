@@ -1,10 +1,24 @@
 import 'react-native-gesture-handler';
 import React, { useState } from 'react';
-import { Picker, StyleSheet, Text, View } from 'react-native';
+import {
+  Picker,
+  StyleSheet,
+  Text,
+  View,
+  TouchableHighlight,
+  Button,
+} from 'react-native';
 
-
-export const FishEntry = ({fishData, ...rest}) => {
+export const FishEntry = ({ fishData, pressAction, ...rest }) => {
   return (
-    <Text>{fishData.name}</Text>
+    <TouchableHighlight onPress={pressAction}>
+      <Text>{fishData.name}</Text>
+    </TouchableHighlight>
   );
 };
+
+const styles = StyleSheet.create({
+  allFishScroll: {
+    //paddingVertical: 20,
+  },
+});

@@ -59,7 +59,7 @@ export const AllFish = () => {
             <FishEntry
               fishData={fishData[key]}
               key={key}
-              onPress={() => caughtPress(fishData[key].name)}
+              pressAction={() => caughtPress(fishData[key].name)}
             ></FishEntry>
           ))}
       </ScrollView>
