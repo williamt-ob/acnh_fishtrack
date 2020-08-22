@@ -29,7 +29,6 @@ export const FishModal = ({ fishData, open, handleClose, ...rest }) => {
       <Button title="Close" onPress={handleClose} />
       {/* TODO: add an image of the fish location on a map */}
       {/* TODO: add an image of the fish relative shadow size */}
-
     </Modal>
   );
 };
