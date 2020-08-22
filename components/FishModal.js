@@ -9,9 +9,11 @@ import {
   Button,
 } from 'react-native';
 
+//TODO: get the back button overwritten to run handleClose
+
 export const FishModal = ({ fishData, open, handleClose,...rest }) => {
   return (
-    <Modal style={styles.entryView} visible={open}>
+    <Modal style={styles.entryView} visible={open} onBack={handleClose}>
       <TouchableHighlight>
         <Text>{fishData.name}</Text>
       </TouchableHighlight>

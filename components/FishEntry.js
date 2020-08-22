@@ -16,6 +16,7 @@ export const FishEntry = ({ fishData, openAction, pressAction, ...rest }) => {
         <Text>{fishData.name}</Text>
       </TouchableHighlight>
       <Button title="Caught" onPress={pressAction} />
+      <Button title="?" onPress={openAction} />
     </View>
   );
 };
