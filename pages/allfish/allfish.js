@@ -42,6 +42,8 @@ export const AllFish = () => {
       } catch (e) {
         console.log(e);
         // error reading value
+      } finally {
+        setLoading(false);
       }
     };
     inner(state);
@@ -98,11 +100,8 @@ export const AllFish = () => {
         ) : (
           <Button title="All Fish" onPress={() => setUncaughtOnly(true)} />
         )}
-        {(ascending > 0) ? (
-          <Button
-            title="Up arrow"
-            onPress={() => setAscending(-1)}
-          />
+        {ascending > 0 ? (
+          <Button title="Up arrow" onPress={() => setAscending(-1)} />
         ) : (
           <Button title="DownArrow" onPress={() => setAscending(1)} />
         )}
@@ -122,7 +121,10 @@ export const AllFish = () => {
           <ScrollView contentContainerStyle={styles.allFishScroll}>
             {Object.keys(fishData)
               .filter((key) => _handleFilters(key))
-              .sort((a, b) => (fishData[a][sortBy] > fishData[b][sortBy]) * ascending)
+              .sort(
+                (a, b) =>
+                  (fishData[a][sortBy] > fishData[b][sortBy]) * ascending
+              )
               .map((key) => (
                 <FishEntry
                   fishData={fishData[key]}
