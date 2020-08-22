@@ -1,6 +1,13 @@
 import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react';
-import { ScrollView, Picker, StyleSheet, Text, View } from 'react-native';
+import {
+  ScrollView,
+  Picker,
+  StyleSheet,
+  Text,
+  View,
+  Button,
+} from 'react-native';
 import { fishData } from '../../data/fishdata';
 import { FishEntry } from '../../components/FishEntry';
 import { FishModal } from '../../components/FishModal';
@@ -10,11 +17,18 @@ import AsyncStorage from '@react-native-community/async-storage';
 const sortOptions = ['Value', 'Name'];
 
 export const AllFish = () => {
+  // Object holding caught fish info
   const [caughtFish, setCaughtFish] = useState({});
+  // For setting sort type
   const [sortBy, setSortBy] = useState('Name');
+
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  // For setting which data will be sent to modal, prevents using multiple modals
   const [selectedFishData, setSelectedFishData] = useState({});
+
+  // Checkbox for setting what's catchable
+  const [catchableOnly, setCatchableOnly] = useState(false);
 
   useEffect((state) => {
     const inner = async (state) => {
@@ -32,7 +46,6 @@ export const AllFish = () => {
   }, []);
 
   const _caughtPress = async (value) => {
-    console.log('here');
     setLoading(true);
     try {
       const newCaught = { ...caughtFish };
@@ -54,15 +67,29 @@ export const AllFish = () => {
 
   return (
     <>
-      <Picker
-        selectedValue={sortBy}
-        style={{ height: 50, width: 150 }}
-        onValueChange={(itemValue, itemIndex) => setSortBy(itemValue)}
-      >
-        {sortOptions.map((option) => (
-          <Picker.Item key={option} label={option} value={option} />
-        ))}
-      </Picker>
+      <View style={{ flexDirection: 'row' }}>
+        <Picker
+          selectedValue={sortBy}
+          style={{ height: 50, width: 150 }}
+          onValueChange={(itemValue, itemIndex) => setSortBy(itemValue)}
+        >
+          {sortOptions.map((option) => (
+            <Picker.Item
+              key={option}
+              label={option}
+              value={option.toLowerCase()}
+            />
+          ))}
+        </Picker>
+        {catchableOnly ? (
+          <Button
+            title="Only Catchable"
+            onPress={() => setCatchableOnly(false)}
+          />
+        ) : (
+          <Button title="All Fish" onPress={() => setCatchableOnly(true)} />
+        )}
+      </View>
 
       <FishModal
         open={modalOpen}
