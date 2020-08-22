@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react';
 import { fishData } from '../../data/fishdata';
-import { Picker, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, Picker, StyleSheet, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const sortOptions = ['Value', 'Name', 'Catchable'];
@@ -51,13 +51,21 @@ export const AllFish = () => {
           <Picker.Item key={option} label={option} value={option} />
         ))}
       </Picker>
-      {Object.keys(fishData)
-        .filter((key) => !(key in caughtFish))
-        .map((key) => (
-          <Text onPress={() => caughtPress(fishData[key].name)} key={key}>
-            {fishData[key].name}
-          </Text>
-        ))}
+      <ScrollView contentContainerStyle={styles.allFishScroll}>
+        {Object.keys(fishData)
+          .filter((key) => !(key in caughtFish))
+          .map((key) => (
+            <Text onPress={() => caughtPress(fishData[key].name)} key={key}>
+              {fishData[key].name}
+            </Text>
+          ))}
+      </ScrollView>
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  allFishScroll: {
+    //paddingVertical: 20,
+  },
+});
