@@ -11,39 +11,35 @@ export const AllFish = () => {
   const [sortBy, setSortBy] = useState('Name');
   const [loading, setLoading] = useState(false);
 
-  useEffect(async (state) => {
-
-    try {
-      const value = await AsyncStorage.getItem('caughtFish')
-      if(value !== null) {
-        setCaughtFish(value);
+  useEffect((state) => {
+    const inner = async (state) => {
+      try {
+        const value = await AsyncStorage.getItem('caughtFish');
+        if (value !== null) {
+          setCaughtFish(JSON.parse(value));
+        }
+      } catch (e) {
+        console.log(e);
+        // error reading value
       }
-    } catch(e) {
-      console.log(e);
-      // error reading value
-    }
-    finally{
-
-      
-    }
-  
-  
-  },[]);
+    };
+    inner(state);
+  }, []);
 
   const caughtPress = async (value) => {
     console.log('here');
     try {
-      const newCaught = {...caughtFish};
+      const newCaught = { ...caughtFish };
       newCaught[value] = {};
       const jsonValue = JSON.stringify(newCaught);
       await AsyncStorage.setItem('caughtFish', jsonValue);
       setCaughtFish(newCaught);
     } catch (e) {
       console.log(e);
+    } finally {
     }
-  } 
+  };
 
-  console.log(fishData);
   return (
     <>
       <Picker
@@ -55,9 +51,13 @@ export const AllFish = () => {
           <Picker.Item key={option} label={option} value={option} />
         ))}
       </Picker>
-      {Object.keys(fishData).filter((key) => !(key in caughtFish)).map((key) => (
-        <Text onPress={() => caughtPress(fishData[key].name)} key={key}>{fishData[key].name}</Text>
-      ))}
+      {Object.keys(fishData)
+        .filter((key) => !(key in caughtFish))
+        .map((key) => (
+          <Text onPress={() => caughtPress(fishData[key].name)} key={key}>
+            {fishData[key].name}
+          </Text>
+        ))}
     </>
   );
 };
