@@ -27,8 +27,8 @@ export const AllFish = () => {
   // For setting which data will be sent to modal, prevents using multiple modals
   const [selectedFishData, setSelectedFishData] = useState({});
 
-  // Checkbox for setting what's catchable
-  const [catchableOnly, setCatchableOnly] = useState(false);
+  // Checkbox for setting what's catchable (will make checkbox)
+  const [uncaughtOnly, setUncaughtOnly] = useState(false);
 
   useEffect((state) => {
     const inner = async (state) => {
@@ -65,6 +65,13 @@ export const AllFish = () => {
     setModalOpen(true);
   };
 
+  const _handleFilters = (key) => {
+    if (uncaughtOnly && (key in caughtFish)) {
+      return false;
+    }
+    return true;
+  }
+
   return (
     <>
       <View style={{ flexDirection: 'row' }}>
@@ -81,13 +88,13 @@ export const AllFish = () => {
             />
           ))}
         </Picker>
-        {catchableOnly ? (
+        {uncaughtOnly ? (
           <Button
-            title="Only Catchable"
-            onPress={() => setCatchableOnly(false)}
+            title="Only Uncaught"
+            onPress={() => setUncaughtOnly(false)}
           />
         ) : (
-          <Button title="All Fish" onPress={() => setCatchableOnly(true)} />
+          <Button title="All Fish" onPress={() => setUncaughtOnly(true)} />
         )}
       </View>
 
@@ -103,7 +110,7 @@ export const AllFish = () => {
         <>
           <ScrollView contentContainerStyle={styles.allFishScroll}>
             {Object.keys(fishData)
-              .filter((key) => !(key in caughtFish))
+              .filter((key) => _handleFilters(key))
               .map((key) => (
                 <FishEntry
                   fishData={fishData[key]}
