@@ -1,7 +1,8 @@
 import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react';
-import { fishData } from '../../data/fishdata';
 import { ScrollView, Picker, StyleSheet, Text, View } from 'react-native';
+import { fishData } from '../../data/fishdata';
+import { FishEntry } from '../../components/FishEntry';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const sortOptions = ['Value', 'Name', 'Catchable'];
@@ -55,9 +56,11 @@ export const AllFish = () => {
         {Object.keys(fishData)
           .filter((key) => !(key in caughtFish))
           .map((key) => (
-            <Text onPress={() => caughtPress(fishData[key].name)} key={key}>
-              {fishData[key].name}
-            </Text>
+            <FishEntry
+              fishData={fishData[key]}
+              key={key}
+              onPress={() => caughtPress(fishData[key].name)}
+            ></FishEntry>
           ))}
       </ScrollView>
     </>
