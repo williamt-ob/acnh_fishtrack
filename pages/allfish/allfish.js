@@ -30,7 +30,7 @@ export const AllFish = () => {
     inner(state);
   }, []);
 
-  const caughtPress = async (value) => {
+  const _caughtPress = async (value) => {
     console.log('here');
     setLoading(true);
     try {
@@ -46,7 +46,7 @@ export const AllFish = () => {
     }
   };
 
-  const entryPress = async (key) => {
+  const _entryPress = async (key) => {
     setSelectedFishData(fishData[key]);
     setModalOpen(true);
   };
@@ -80,8 +80,8 @@ export const AllFish = () => {
                 <FishEntry
                   fishData={fishData[key]}
                   key={key}
-                  pressAction={() => caughtPress(fishData[key].name)}
-                  openAction={() => entryPress(key)}
+                  pressAction={() => _caughtPress(fishData[key].name)}
+                  openAction={() => _entryPress(key)}
                 ></FishEntry>
               ))}
           </ScrollView>
