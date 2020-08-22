@@ -66,11 +66,11 @@ export const AllFish = () => {
   };
 
   const _handleFilters = (key) => {
-    if (uncaughtOnly && (key in caughtFish)) {
+    if (uncaughtOnly && key in caughtFish) {
       return false;
     }
     return true;
-  }
+  };
 
   return (
     <>
