@@ -1,5 +1,3 @@
-import { fishSizes } from './fishsizes';
-
 export const fishShadows = {
   Smallest: require('../assets/shadows/fishshadows/Smallest.png'),
   Small: require('../assets/shadows/fishshadows/Small.png'),
