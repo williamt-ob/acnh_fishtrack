@@ -93,7 +93,7 @@ export const AllFish = () => {
 
   return (
     <>
-      <View style={{ flexDirection: 'row' }}>
+      <View style={styles.filterRow}>
         <Picker
           selectedValue={sortBy}
           style={{ height: 50, width: 150 }}
@@ -136,16 +136,13 @@ export const AllFish = () => {
           <ScrollView contentContainerStyle={styles.allFishScroll}>
             {Object.keys(fishData)
               .filter((key) => _handleFilters(key))
-              .sort(
-                (a, b) => {
-                  if (ascending) {
-                    return (fishData[a][sortBy] > fishData[b][sortBy]);
-                  }
-                  else {
-                    return (fishData[a][sortBy] < fishData[b][sortBy]);
-                  }
+              .sort((a, b) => {
+                if (ascending) {
+                  return fishData[a][sortBy] > fishData[b][sortBy];
+                } else {
+                  return fishData[a][sortBy] < fishData[b][sortBy];
                 }
-              )
+              })
               .map((key) => (
                 <FishEntry
                   fishData={fishData[key]}
@@ -156,7 +153,7 @@ export const AllFish = () => {
                     caughtPress: () => _caughtPress(key),
                     uncaughtPress: () => _uncaughtPress(key),
                   }}
-                ></FishEntry>
+                />
               ))}
           </ScrollView>
         </>
@@ -168,5 +165,8 @@ export const AllFish = () => {
 const styles = StyleSheet.create({
   allFishScroll: {
     //paddingVertical: 20,
+  },
+  filterRow: {
+    flexDirection: 'row',
   },
 });

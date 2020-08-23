@@ -86,6 +86,9 @@ const App = ({ navigation, ...rest }) => {
   );
 };
 
+//TODO: figure out how to make the apps reload when clicked on,
+// the storage needs to be reloaded on button click to make sense
+
 export default StackWrapper = () => {
   return (
     <NavigationContainer>

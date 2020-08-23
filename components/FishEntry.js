@@ -22,9 +22,9 @@ export const FishEntry = ({
         <Text>{fishData.name}</Text>
       </TouchableHighlight>
       {!caught ? (
-        <Button title="Caught" onPress={actions.caughtPress} />
+        <Button title="Caught" style={styles.fishAction} onPress={actions.caughtPress} />
       ) : (
-        <Button title="UnCaught" onPress={actions.uncaughtPress} />
+        <Button title="UnCaught" style={styles.fishAction} onPress={actions.uncaughtPress} />
       )}
 
       <Button title="?" onPress={openAction} />
@@ -35,5 +35,7 @@ export const FishEntry = ({
 const styles = StyleSheet.create({
   entryView: {
     flexDirection: 'row',
+  },
+  fishAction: {
   },
 });

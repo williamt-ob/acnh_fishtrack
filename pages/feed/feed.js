@@ -7,8 +7,6 @@ import { FishEntry } from '../../components/FishEntry';
 import { FishModal } from '../../components/FishModal';
 import { isCatchable } from '../../common/catchablenow';
 import { uniqueAreas } from '../../common/uniqueareas';
-import { FishEntry } from '../../components/FishEntry';
-import { FishModal } from '../../components/FishModal';
 
 //TODO: abstract the dynamic list stuff into its own hook,
 // already retyping it too much
@@ -75,6 +73,30 @@ export const Feed = () => {
     inner(state);
   }, []);
 
+  
+  const _caughtPress = async (value) => {
+    setLoading(true);
+    try {
+      const newCaught = { ...caughtFish };
+      newCaught[value] = {};
+      const jsonValue = JSON.stringify(newCaught);
+      await AsyncStorage.setItem('caughtFish', jsonValue);
+      setCaughtFish(newCaught);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+  const _entryPress = async (key) => {
+    setSelectedFishData(fishData[key]);
+    setModalOpen(true);
+  };
+
+
+
   const newCatchableNow = Object.keys(catchableNow).length; //TODO: make this dynamic
   const newCatchableLater = Object.keys(catchableTodayNotNow).length;
 
@@ -101,7 +123,16 @@ export const Feed = () => {
             {Object.keys(catchableNow)
               .filter((key) => !(key in caughtFish))
               .map((key) => (
-                <Text key={key}>{catchableNow[key].name}</Text>
+                <FishEntry
+                  fishData={catchableNow[key]}
+                  key={key}
+                  openAction={() => _entryPress(key)}
+                  caught={key in caughtFish}
+                  actions={{
+                    caughtPress: () => _caughtPress(key),
+                    //uncaughtPress: () => _uncaughtPress(key),
+                  }}
+                />
               ))}
           </ScrollView>
         </>
