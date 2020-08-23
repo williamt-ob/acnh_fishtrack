@@ -76,6 +76,8 @@ const _isCatchableRightNow = (fishData, today) => {
 
   //TODO: convert to int, can't remember how lol
 
+  //TODO: make some unit tests for this
+
   const hours = today.getHours();
 
   if (
@@ -90,8 +92,8 @@ const _isCatchableRightNow = (fishData, today) => {
 
 export const isCatchable = (fishData, hemisphere) => {
   const today = new Date();
-  console.log(`isCatchable: ${JSON.stringify(fishData)}`);
-
+  // TODO: make the date for this an optional parameter for unittesting
+  
   const catchableToday = _isCatchableToday(fishData, today, hemisphere);
   // Only check now if today is good, otherwise shortcircuit
   const catchableNow = catchableToday

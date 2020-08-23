@@ -64,6 +64,21 @@ export const AllFish = () => {
     }
   };
 
+  const _uncaughtPress = async (value) => {
+    setLoading(true);
+    try {
+      const newCaught = { ...caughtFish };
+      delete newCaught[value];
+      const jsonValue = JSON.stringify(newCaught);
+      await AsyncStorage.setItem('caughtFish', jsonValue);
+      setCaughtFish(newCaught);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const _entryPress = async (key) => {
     setSelectedFishData(fishData[key]);
     setModalOpen(true);
@@ -129,8 +144,12 @@ export const AllFish = () => {
                 <FishEntry
                   fishData={fishData[key]}
                   key={key}
-                  pressAction={() => _caughtPress(fishData[key].name)}
                   openAction={() => _entryPress(key)}
+                  caught={key in caughtFish}
+                  actions={{
+                    caughtPress: () => _caughtPress(key),
+                    uncaughtPress: () => _uncaughtPress(key),
+                  }}
                 ></FishEntry>
               ))}
           </ScrollView>

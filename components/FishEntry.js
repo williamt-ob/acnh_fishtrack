@@ -9,13 +9,24 @@ import {
   Button,
 } from 'react-native';
 
-export const FishEntry = ({ fishData, openAction, pressAction, ...rest }) => {
+export const FishEntry = ({
+  fishData,
+  openAction,
+  caught,
+  actions,
+  ...rest
+}) => {
   return (
     <View style={styles.entryView}>
       <TouchableHighlight onPress={openAction}>
         <Text>{fishData.name}</Text>
       </TouchableHighlight>
-      <Button title="Caught" onPress={pressAction} />
+      {!caught ? (
+        <Button title="Caught" onPress={actions.caughtPress} />
+      ) : (
+        <Button title="UnCaught" onPress={actions.uncaughtPress} />
+      )}
+
       <Button title="?" onPress={openAction} />
     </View>
   );
