@@ -5,4 +5,5 @@ export const fishShadows = {
   Large: require('../assets/shadows/fishshadows/Large.png'),
   'X Large': require('../assets/shadows/fishshadows/X Large.png'),
   Largest: require('../assets/shadows/fishshadows/Largest.png'),
+  Narrow: require('../assets/shadows/fishshadows/Narrow.png'), 
 };
