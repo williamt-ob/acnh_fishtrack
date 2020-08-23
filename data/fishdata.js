@@ -157,7 +157,7 @@ export const fishData = {
   Catfish: {
     name: 'Catfish',
     location: 'Pond',
-    shadowSize: '', // TODO: why no shadow size?
+    shadowSize: 'Large',
     value: 800,
     time: '16 - 9',
     northDate: 'May-October',
@@ -167,7 +167,7 @@ export const fishData = {
     name: 'Giant Snakehead',
     location: 'Pond',
     shadowSize: 'X Large',
-    value: '', // TODO: why no shadow size?
+    value: 5500,
     time: '9 - 16',
     northDate: 'June-August',
     southDate: 'December-February',
@@ -202,7 +202,7 @@ export const fishData = {
   Tilapia: {
     name: 'Tilapia',
     location: 'River',
-    shadowSize: '', // TODO: why no shadow size?
+    shadowSize: 'Medium',
     value: 800,
     time: 'All day',
     northDate: 'June-October',
@@ -221,7 +221,7 @@ export const fishData = {
     name: 'Pond Smelt',
     location: 'River',
     shadowSize: 'Small',
-    value: '', // TODO: why no shadow size?
+    value: 400, 
     time: 'All day',
     northDate: 'December-February',
     southDate: 'June-August',
@@ -391,7 +391,7 @@ export const fishData = {
   Arapaima: {
     name: 'Arapaima',
     location: 'River',
-    shadowSize: '', // TODO: why no shadow size?
+    shadowSize: 'Largest', // TODO: why no shadow size?
     value: 10000,
     time: '16 - 9',
     northDate: 'June-September',
@@ -625,7 +625,8 @@ export const fishData = {
   'Ocean Sunfish': {
     name: 'Ocean Sunfish',
     location: 'Sea',
-    shadowSize: 'Largest (Fin)',
+    shadowSize: 'Largest',
+    fin: true,
     value: 4000,
     time: '4 - 21',
     northDate: 'July-September',
@@ -643,7 +644,8 @@ export const fishData = {
   'Saw Shark': {
     name: 'Saw Shark',
     location: 'Sea',
-    shadowSize: 'Largest (fin)',
+    shadowSize: 'Largest',
+    fin: true,
     value: 12000,
     time: '16 - 9',
     northDate: 'June-September',
@@ -652,7 +654,8 @@ export const fishData = {
   'Hammerhead Shark': {
     name: 'Hammerhead Shark',
     location: 'Sea',
-    shadowSize: 'Largest (fin)',
+    shadowSize: 'Largest',
+    fin: true,
     value: 8000,
     time: '16 - 9',
     northDate: 'June-September',
@@ -661,7 +664,8 @@ export const fishData = {
   'Great White Shark': {
     name: 'Great White Shark',
     location: 'Sea',
-    shadowSize: 'Largest (fin)',
+    shadowSize: 'Largest',
+    fin: true,
     value: 15000,
     time: '16 - 9',
     northDate: 'June-September',
@@ -670,7 +674,8 @@ export const fishData = {
   'Whale Shark': {
     name: 'Whale Shark',
     location: 'Sea',
-    shadowSize: 'Largest (fin)',
+    shadowSize: 'Largest',
+    fin: true,
     value: 13000,
     time: 'All day',
     northDate: 'June-September',
@@ -679,7 +684,8 @@ export const fishData = {
   Suckerfish: {
     name: 'Suckerfish',
     location: 'Sea',
-    shadowSize: '(Fin)', // TODO: why is this just (Fin) ?
+    shadowSize: 'X Large', // TODO: why is this just (Fin) ?
+    fin: true,
     value: 1500,
     time: 'All day',
     northDate: 'June-September',
