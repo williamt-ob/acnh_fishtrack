@@ -117,11 +117,13 @@ export const AllFish = () => {
         ) : (
           <Button title="All Fish" onPress={() => setUncaughtOnly(true)} />
         )}
-        {ascending > 0 ? (
-          <Button title="Up arrow" onPress={() => setAscending(false)} />
-        ) : (
-          <Button title="DownArrow" onPress={() => setAscending(true)} />
-        )}
+
+        <Ionicons
+          name={(ascending) ? "md-arrow-round-up" : "md-arrow-round-down"}
+          onPress={() => setAscending(!ascending)}
+          size={32}
+          color="black"
+        />
       </View>
 
       <FishModal

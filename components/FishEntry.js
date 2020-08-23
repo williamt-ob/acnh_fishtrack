@@ -22,22 +22,12 @@ export const FishEntry = ({
       <TouchableHighlight onPress={openAction}>
         <Text>{fishData.name}</Text>
       </TouchableHighlight>
-      {!caught ? (
-        <Ionicons
-          name="md-checkbox"
-          onPress={actions.caughtPress}
+      <Ionicons
+          name={(caught) ? "md-checkbox" : "md-checkbox-outline"}
+          onPress={(caught) ? actions.uncaughtPress : actions.caughtPress}
           size={32}
           color="black"
-        />
-      ) : (
-        <Ionicons
-          name="md-checkbox-outline"
-          onPress={actions.uncaughtPress}
-          size={32}
-          color="black"
-        />
-      )}
-
+      />
       <Button title="?" onPress={openAction} />
     </View>
   );
