@@ -13,6 +13,7 @@ import { FishEntry } from '../../components/FishEntry';
 import { FishModal } from '../../components/FishModal';
 import AsyncStorage from '@react-native-community/async-storage';
 // TODO: import CheckBox from '@react-native-community/react-native-checkbox';
+import { uniqueAreas } from '../../common/uniqueareas';
 
 const sortOptions = ['Value', 'Name'];
 
