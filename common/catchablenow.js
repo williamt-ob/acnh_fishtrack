@@ -35,7 +35,7 @@ const _isCatchableToday = (fishData, today, hemisphere) => {
 
   // Should be impossible with available data
   if (dateRanges.length === 0) {
-    return null; 
+    return null;
   }
 
   if (dateRanges[0] === 'YearRound') {
@@ -67,7 +67,8 @@ const _isCatchableToday = (fishData, today, hemisphere) => {
 const _isCatchableRightNow = (fishData, today) => {
   const timeString = fishData.time;
 
-  if (timeString === '') {
+  if (timeString === 'All day') {
+    return true;
   }
 
   return false;

@@ -54,7 +54,7 @@ export const Feed = () => {
         const catchableNowTmp = {};
         Object.keys(fishData).forEach((key) => {
           const catchable = isCatchable(fishData[key], hemisphere);
-          if (catchable.catchableToday) {
+          if (catchable.catchableNow) {
             catchableNowTmp[key] = { ...fishData[key] }; //Copy just in-case
           } else if (catchable.catchableToday) {
             catchableTodayNotNowTmp[key] = { ...fishData[key] }; //Copy just in-case
