@@ -1,16 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { useState } from 'react';
 import { Picker, StyleSheet, Text, View } from 'react-native';
-
-const uniqueAreas = [
-  'River',
-  'Pond',
-  'River (Clifftop)',
-  'River (mouth)',
-  'Sea',
-  'Pier',
-  'Sea (rainy days)',
-];
+import { uniqueAreas } from '../../common/uniqueareas';
 
 const catchFilterStatusOptions = ['All', 'Uncaught'];
 

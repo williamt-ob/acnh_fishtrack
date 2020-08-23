@@ -72,8 +72,8 @@ export const Feed = () => {
     inner(state);
   }, []);
 
-  const newCatchableNow = 1; //TODO: make this dynamic
-  const newCatchableLater = 1;
+  const newCatchableNow = Object.keys(catchableNow).length; //TODO: make this dynamic
+  const newCatchableLater = Object.keys(catchableTodayNotNow).length;
 
   const showNewCatchableNow = newCatchableNow > 0;
   const showNewCatchableLater = newCatchableLater > 0;
@@ -89,7 +89,11 @@ export const Feed = () => {
             style={styles.header}
           >{`You can catch ${newCatchableNow} NEW fish right now!`}</Text>
           <ScrollView style={styles.catchableNowView}>
-            <Text>TODO: fill this in</Text>
+            {Object.keys(catchableNow)
+              .filter((key) => !(key in caughtFish))
+              .map((key) => (
+                <Text key={key}>{catchableNow[key].name}</Text>
+              ))}
           </ScrollView>
         </>
       )}
@@ -99,7 +103,13 @@ export const Feed = () => {
             style={styles.header}
           >{`You can catch ${newCatchableLater} NEW fish later today now!`}</Text>
           <ScrollView style={styles.catchableNowView}>
-            <Text>TODO: fill this in</Text>
+          <ScrollView style={styles.catchableNowView}>
+            {Object.keys(catchableTodayNotNow)
+              .filter((key) => !(key in caughtFish))
+              .map((key) => (
+                <Text key={key}>{catchableTodayNotNow[key].name}</Text>
+              ))}
+          </ScrollView>
           </ScrollView>
         </>
       )}
