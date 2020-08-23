@@ -13,7 +13,12 @@ import {
 
 export const FishModal = ({ fishData, open, handleClose, ...rest }) => {
   return (
-    <Modal style={styles.entryView} visible={open} onBack={handleClose}>
+    <Modal
+      style={styles.entryView}
+      onRequestClose={handleClose}
+      visible={open}
+      onBack={handleClose}
+    >
       <Text style={styles.fishTitle}>{fishData.name}</Text>
       <Text style={styles.fishHeader}>{fishData.location}</Text>
       <Text
