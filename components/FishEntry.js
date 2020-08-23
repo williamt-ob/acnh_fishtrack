@@ -8,6 +8,7 @@ import {
   TouchableHighlight,
   Button,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export const FishEntry = ({
   fishData,
@@ -22,9 +23,19 @@ export const FishEntry = ({
         <Text>{fishData.name}</Text>
       </TouchableHighlight>
       {!caught ? (
-        <Button title="Caught" style={styles.fishAction} onPress={actions.caughtPress} />
+        <Ionicons
+          name="md-checkbox"
+          onPress={actions.caughtPress}
+          size={32}
+          color="black"
+        />
       ) : (
-        <Button title="UnCaught" style={styles.fishAction} onPress={actions.uncaughtPress} />
+        <Ionicons
+          name="md-checkbox-outline"
+          onPress={actions.uncaughtPress}
+          size={32}
+          color="black"
+        />
       )}
 
       <Button title="?" onPress={openAction} />
@@ -36,6 +47,5 @@ const styles = StyleSheet.create({
   entryView: {
     flexDirection: 'row',
   },
-  fishAction: {
-  },
+  fishAction: {},
 });
