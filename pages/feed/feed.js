@@ -1,11 +1,12 @@
 import 'react-native-gesture-handler';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { fishData } from '../../data/fishdata';
 import { FishEntry } from '../../components/FishEntry';
 import { FishModal } from '../../components/FishModal';
 import { isCatchable } from '../../common/catchablenow';
-import AsyncStorage from '@react-native-community/async-storage';
+import { uniqueAreas } from '../../common/uniqueareas';
 
 //TODO: abstract the dynamic list stuff into its own hook,
 // already resuing it too much
