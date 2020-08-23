@@ -8,10 +8,12 @@ import {
   View,
   Button,
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+import { Ionicons } from '@expo/vector-icons';
 import { fishData } from '../../data/fishdata';
 import { FishEntry } from '../../components/FishEntry';
 import { FishModal } from '../../components/FishModal';
-import AsyncStorage from '@react-native-community/async-storage';
+
 // TODO: import CheckBox from '@react-native-community/react-native-checkbox';
 
 const sortOptions = ['Value', 'Name'];
