@@ -82,6 +82,15 @@ export const Feed = () => {
   console.log(`CatchableNow ${JSON.stringify(catchableNow)}`);
   console.log(`CatchableTodayNotNow ${JSON.stringify(catchableTodayNotNow)}`);
 
+  const catchablePerArea = {};
+  Object.keys(catchableNow).forEach((key) => {
+    if (catchableNow[key].location in catchablePerArea) {
+      catchablePerArea[catchableNow[key].location] = 1;
+    } else {
+      catchablePerArea[catchableNow[key].location] += 1;
+    }
+  });
+
   return (
     <ScrollView>
       {showNewCatchableNow && (
@@ -104,13 +113,13 @@ export const Feed = () => {
             style={styles.header}
           >{`You can catch ${newCatchableLater} NEW fish later today now!`}</Text>
           <ScrollView style={styles.catchableNowView}>
-          <ScrollView style={styles.catchableNowView}>
-            {Object.keys(catchableTodayNotNow)
-              .filter((key) => !(key in caughtFish))
-              .map((key) => (
-                <Text key={key}>{catchableTodayNotNow[key].name}</Text>
-              ))}
-          </ScrollView>
+            <ScrollView style={styles.catchableNowView}>
+              {Object.keys(catchableTodayNotNow)
+                .filter((key) => !(key in caughtFish))
+                .map((key) => (
+                  <Text key={key}>{catchableTodayNotNow[key].name}</Text>
+                ))}
+            </ScrollView>
           </ScrollView>
         </>
       )}
