@@ -13,7 +13,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 //TODO: make the modal component abstracted as well, maybe nest both
 
 export const Feed = () => {
-
   //TODO: make the hemisphere dynamic/an option
   const hemisphere = 'north';
 
@@ -32,7 +31,6 @@ export const Feed = () => {
 
   const [catchableNow, setCatchableNow] = useState({});
 
-
   useEffect((state) => {
     const inner = async (state) => {
       try {
@@ -44,8 +42,8 @@ export const Feed = () => {
         // Dynamically make the uncaught list based off of this
         const uncaughtTmp = {};
         Object.keys(fishData).forEach((key) => {
-          if (!(key in caughtFish)){
-            uncaughtTmp[key] = {...fishData[key]}; //Copy just in-case
+          if (!(key in caughtFish)) {
+            uncaughtTmp[key] = { ...fishData[key] }; //Copy just in-case
           }
         });
         setUncaughtFish(uncaughtTmp);
@@ -55,30 +53,24 @@ export const Feed = () => {
         const catchableTodayNotNowTmp = {};
         const catchableNowTmp = {};
         Object.keys(fishData).forEach((key) => {
-          const catchable = isCatchable(fishData[key]);
-          if (catchable.catchableToday){
-            catchableNowTmp[key] = {...fishData[key]}; //Copy just in-case
+          const catchable = isCatchable(fishData[key], hemisphere);
+          if (catchable.catchableToday) {
+            catchableNowTmp[key] = { ...fishData[key] }; //Copy just in-case
+          } else if (catchable.catchableToday) {
+            catchableTodayNotNowTmp[key] = { ...fishData[key] }; //Copy just in-case
           }
-          else if (catchable.catchableToday){
-            catchableTodayNotNowTmp[key] = {...fishData[key]}; //Copy just in-case
-          }
-          
         });
         setCatchableTodayNotNow(catchableTodayNotNowTmp);
         setCatchableNow(catchableNowTmp);
-
       } catch (e) {
         console.log(e);
         // error reading value
-      }
-      finally {
+      } finally {
         setLoading(false);
       }
-
     };
     inner(state);
   }, []);
-
 
   const newCatchableNow = 1; //TODO: make this dynamic
   const newCatchableLater = 1;
@@ -88,7 +80,6 @@ export const Feed = () => {
 
   console.log(`CatchableNow ${JSON.stringify(catchableNow)}`);
   console.log(`CatchableTodayNotNow ${JSON.stringify(catchableTodayNotNow)}`);
-
 
   return (
     <ScrollView>
