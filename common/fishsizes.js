@@ -10,3 +10,5 @@ export const fishSizes = [
   'Largest (Fin)',
   'Largest (fin)',
 ];
+
+//TODO: fix data validation, blanks, and why one of them is just '(Fin)'

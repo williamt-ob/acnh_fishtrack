@@ -157,7 +157,7 @@ export const fishData = {
   Catfish: {
     name: 'Catfish',
     location: 'Pond',
-    shadowSize: '',
+    shadowSize: '', // TODO: why no shadow size?
     value: 800,
     time: '16 - 9',
     northDate: 'May-October',
@@ -167,7 +167,7 @@ export const fishData = {
     name: 'Giant Snakehead',
     location: 'Pond',
     shadowSize: 'X Large',
-    value: '',
+    value: '', // TODO: why no shadow size?
     time: '9 - 16',
     northDate: 'June-August',
     southDate: 'December-February',
@@ -202,7 +202,7 @@ export const fishData = {
   Tilapia: {
     name: 'Tilapia',
     location: 'River',
-    shadowSize: '',
+    shadowSize: '', // TODO: why no shadow size?
     value: 800,
     time: 'All day',
     northDate: 'June-October',
@@ -221,7 +221,7 @@ export const fishData = {
     name: 'Pond Smelt',
     location: 'River',
     shadowSize: 'Small',
-    value: '',
+    value: '', // TODO: why no shadow size?
     time: 'All day',
     northDate: 'December-February',
     southDate: 'June-August',
@@ -391,7 +391,7 @@ export const fishData = {
   Arapaima: {
     name: 'Arapaima',
     location: 'River',
-    shadowSize: '',
+    shadowSize: '', // TODO: why no shadow size?
     value: 10000,
     time: '16 - 9',
     northDate: 'June-September',
@@ -482,7 +482,7 @@ export const fishData = {
     name: 'Blowfish',
     location: 'Sea',
     shadowSize: 'Medium',
-    value: '',
+    value: '', // TODO: why no shadow size?
     time: '18 - 4',
     northDate: 'November-February',
     southDate: 'May-August',
@@ -679,7 +679,7 @@ export const fishData = {
   Suckerfish: {
     name: 'Suckerfish',
     location: 'Sea',
-    shadowSize: '(Fin)',
+    shadowSize: '(Fin)', // TODO: why is this just (Fin) ?
     value: 1500,
     time: 'All day',
     northDate: 'June-September',
