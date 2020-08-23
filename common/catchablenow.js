@@ -33,12 +33,22 @@ const _isCatchableToday = (fishData, today, hemisphere) => {
   const dateRangeString = fishData[`${hemisphere}Date`];
   const dateRanges = dateRangeString.split('/');
 
+  // Should be impossible with available data
+  if (dateRanges.length === 0) {
+    return null; 
+  }
+
+  if (dateRanges[0] === 'YearRound') {
+    return true;
+  }
+
   //TODO: do a fancier loop
   for (let i = 0; i < dateRanges.length; i += 1) {
     const dr = dateRanges[i];
 
     let [lower, upper] = dr.split('-');
 
+    // If upper exists (if there is a split, then set it to that val, else lower)
     lower = _dateMonthToNum(lower);
     upper = upper != null ? _dateMonthToNum(upper) : lower;
 
@@ -57,7 +67,8 @@ const _isCatchableToday = (fishData, today, hemisphere) => {
 const _isCatchableRightNow = (fishData, today) => {
   const timeString = fishData.time;
 
-  if (timeString === '')
+  if (timeString === '') {
+  }
 
   return false;
 };
