@@ -84,7 +84,7 @@ export const Feed = () => {
 
   const catchablePerArea = {};
   Object.keys(catchableNow).forEach((key) => {
-    if (catchableNow[key].location in catchablePerArea) {
+    if (!(catchableNow[key].location in catchablePerArea)) {
       catchablePerArea[catchableNow[key].location] = 1;
     } else {
       catchablePerArea[catchableNow[key].location] += 1;
@@ -129,7 +129,9 @@ export const Feed = () => {
             style={styles.header}
           >{`Best area to fish for the museum now!`}</Text>
           <ScrollView style={styles.bestAreaView}>
-            <Text>TODO: fill this in</Text>
+            {Object.keys(catchablePerArea).map((area) => (
+              <Text>{`${catchablePerArea[area]} catchable in ${area}`}</Text>
+            ))}
           </ScrollView>
         </>
       )}
