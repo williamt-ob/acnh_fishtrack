@@ -68,7 +68,7 @@ const _isCatchableRightNow = (fishData, today) => {
   const timeString = fishData.time;
 
   if (timeString === 'All day') {
-    return true;
+    return [true, true];
   }
 
   const timeRanges = timeString.split(' - ');
@@ -84,21 +84,23 @@ const _isCatchableRightNow = (fishData, today) => {
     (hours >= lower && hours <= upper) ||
     (hours >= upper && hours <= lower)
   ) {
-    return true;
+    return [true, false];
+  } else if (hours <= lower) {
+    return [false, true];
   }
 
-  return false;
+  return [false, false];
 };
 
 export const isCatchable = (fishData, hemisphere) => {
   const today = new Date();
   // TODO: make the date for this an optional parameter for unittesting
-  
+
   const catchableToday = _isCatchableToday(fishData, today, hemisphere);
   // Only check now if today is good, otherwise shortcircuit
-  const catchableNow = catchableToday
+  const [catchableNow, catchableLater] = catchableToday
     ? _isCatchableRightNow(fishData, today)
-    : false;
+    : [false, false];
 
   return {
     catchableNow,

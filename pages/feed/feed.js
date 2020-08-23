@@ -78,10 +78,7 @@ export const Feed = () => {
 
   const showNewCatchableNow = newCatchableNow > 0;
   const showNewCatchableLater = newCatchableLater > 0;
-
-  console.log(`CatchableNow ${JSON.stringify(catchableNow)}`);
-  console.log(`CatchableTodayNotNow ${JSON.stringify(catchableTodayNotNow)}`);
-
+  
   const catchablePerArea = {};
   Object.keys(catchableNow).forEach((key) => {
     if (!(catchableNow[key].location in catchablePerArea)) {
@@ -130,7 +127,7 @@ export const Feed = () => {
           >{`Best area to fish for the museum now!`}</Text>
           <ScrollView style={styles.bestAreaView}>
             {Object.keys(catchablePerArea).map((area) => (
-              <Text>{`${catchablePerArea[area]} catchable in ${area}`}</Text>
+              <Text key={area}>{`${catchablePerArea[area]} catchable in ${area}`}</Text>
             ))}
           </ScrollView>
         </>
