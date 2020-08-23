@@ -7,9 +7,11 @@ import { FishEntry } from '../../components/FishEntry';
 import { FishModal } from '../../components/FishModal';
 import { isCatchable } from '../../common/catchablenow';
 import { uniqueAreas } from '../../common/uniqueareas';
+import { FishEntry } from '../../components/FishEntry';
+import { FishModal } from '../../components/FishModal';
 
 //TODO: abstract the dynamic list stuff into its own hook,
-// already resuing it too much
+// already retyping it too much
 
 //TODO: make the modal component abstracted as well, maybe nest both
 
@@ -78,7 +80,7 @@ export const Feed = () => {
 
   const showNewCatchableNow = newCatchableNow > 0;
   const showNewCatchableLater = newCatchableLater > 0;
-  
+
   const catchablePerArea = {};
   Object.keys(catchableNow).forEach((key) => {
     if (!(catchableNow[key].location in catchablePerArea)) {

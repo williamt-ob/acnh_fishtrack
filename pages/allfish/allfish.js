@@ -30,7 +30,7 @@ export const AllFish = () => {
   // Checkbox for setting what's catchable (will make checkbox)
   const [uncaughtOnly, setUncaughtOnly] = useState(false);
   // TOOD: make a dynamic icon button with up/down
-  const [ascending, setAscending] = useState(1);
+  const [ascending, setAscending] = useState(true);
 
   useEffect((state) => {
     const inner = async (state) => {
@@ -116,9 +116,9 @@ export const AllFish = () => {
           <Button title="All Fish" onPress={() => setUncaughtOnly(true)} />
         )}
         {ascending > 0 ? (
-          <Button title="Up arrow" onPress={() => setAscending(-1)} />
+          <Button title="Up arrow" onPress={() => setAscending(false)} />
         ) : (
-          <Button title="DownArrow" onPress={() => setAscending(1)} />
+          <Button title="DownArrow" onPress={() => setAscending(true)} />
         )}
       </View>
 
@@ -137,8 +137,14 @@ export const AllFish = () => {
             {Object.keys(fishData)
               .filter((key) => _handleFilters(key))
               .sort(
-                (a, b) =>
-                  (fishData[a][sortBy] > fishData[b][sortBy]) * ascending
+                (a, b) => {
+                  if (ascending) {
+                    return (fishData[a][sortBy] > fishData[b][sortBy]);
+                  }
+                  else {
+                    return (fishData[a][sortBy] < fishData[b][sortBy]);
+                  }
+                }
               )
               .map((key) => (
                 <FishEntry
