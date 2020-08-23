@@ -71,6 +71,20 @@ const _isCatchableRightNow = (fishData, today) => {
     return true;
   }
 
+  const timeRanges = timeString.split(' - ');
+  let [lower, upper] = timeRanges;
+
+  //TODO: convert to int, can't remember how lol
+
+  const hours = today.getHours();
+
+  if (
+    (hours >= lower && hours <= upper) ||
+    (hours >= upper && hours <= lower)
+  ) {
+    return true;
+  }
+
   return false;
 };
 
