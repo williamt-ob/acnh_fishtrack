@@ -9,6 +9,7 @@ import {
   Button,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 export const FishEntry = ({
   fishData,
@@ -22,13 +23,19 @@ export const FishEntry = ({
       <TouchableHighlight onPress={openAction}>
         <Text>{fishData.name}</Text>
       </TouchableHighlight>
-      <Ionicons
-          name={(caught) ? "md-checkbox" : "md-checkbox-outline"}
-          onPress={(caught) ? actions.uncaughtPress : actions.caughtPress}
+      <TouchableHighlight
+        onPress={caught ? actions.uncaughtPress : actions.caughtPress}
+      >
+        <Ionicons
+          name={caught ? 'md-checkbox' : 'md-checkbox-outline'}
+          onPress={caught ? actions.uncaughtPress : actions.caughtPress}
           size={32}
           color="black"
-      />
-      <Button title="?" onPress={openAction} />
+        />
+      </TouchableHighlight>
+      <TouchableHighlight onPress={openAction}>
+        <AntDesign name="questioncircle" size={24} color="black" />
+      </TouchableHighlight>
     </View>
   );
 };
