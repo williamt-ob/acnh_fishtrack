@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { fishData } from '../../data/fishdata';
@@ -7,6 +7,7 @@ import { FishEntry } from '../../components/FishEntry';
 import { FishModal } from '../../components/FishModal';
 import { isCatchable } from '../../common/catchablenow';
 import { uniqueAreas } from '../../common/uniqueareas';
+import { FishContext } from '../FishContext';
 
 //TODO: abstract the dynamic list stuff into its own hook,
 // already retyping it too much
@@ -16,6 +17,9 @@ import { uniqueAreas } from '../../common/uniqueareas';
 export const Feed = () => {
   //TODO: make the hemisphere dynamic/an option
   const hemisphere = 'north';
+
+  const { count, increment, decrement } = useContext(FishContext);
+  console.log(`Count: ${count.toString()}`);
 
   // Object holding caught fish info
   const [caughtFish, setCaughtFish] = useState({});

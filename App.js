@@ -9,6 +9,7 @@ import { AllFish } from './pages/allfish/allfish';
 import { LeaderBoards } from './pages/leaderboards/leaderboards';
 import { Settings } from './pages/settings/settings';
 import { Map } from './pages/map/map';
+import { FishContextProvider } from './pages/FishContext';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -19,48 +20,50 @@ const Stack = createStackNavigator();
 // Tabs are cool
 function TabBar() {
   return (
-    <Tab.Navigator initialRouteName="Home" shifting={true}>
-      <Tab.Screen
-        name="Home"
-        options={{
-          tabBarColor: '#a0a6e2',
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="md-home" color="white" size={26} />
-          ),
-        }}
-        component={Feed}
-      />
-      <Tab.Screen
-        name="All Fish"
-        options={{
-          tabBarColor: '#8a84ce',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="fish" color="white" size={26} />
-          ),
-        }}
-        component={AllFish}
-      />
-      <Tab.Screen
-        name="Map"
-        options={{
-          tabBarColor: '#ffb1c1',
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="md-map" color="white" size={26} />
-          ),
-        }}
-        component={Map}
-      />
-      <Tab.Screen
-        name="Leaders"
-        options={{
-          tabBarColor: '#ff9391',
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="md-trophy" color="white" size={26} />
-          ),
-        }}
-        component={LeaderBoards}
-      />
-    </Tab.Navigator>
+    <FishContextProvider>
+      <Tab.Navigator initialRouteName="Home" shifting={true}>
+        <Tab.Screen
+          name="Home"
+          options={{
+            tabBarColor: '#a0a6e2',
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="md-home" color="white" size={26} />
+            ),
+          }}
+          component={Feed}
+        />
+        <Tab.Screen
+          name="All Fish"
+          options={{
+            tabBarColor: '#8a84ce',
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="fish" color="white" size={26} />
+            ),
+          }}
+          component={AllFish}
+        />
+        <Tab.Screen
+          name="Map"
+          options={{
+            tabBarColor: '#ffb1c1',
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="md-map" color="white" size={26} />
+            ),
+          }}
+          component={Map}
+        />
+        <Tab.Screen
+          name="Leaders"
+          options={{
+            tabBarColor: '#ff9391',
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="md-trophy" color="white" size={26} />
+            ),
+          }}
+          component={LeaderBoards}
+        />
+      </Tab.Navigator>
+    </FishContextProvider>
   );
 }
 
@@ -75,6 +78,7 @@ const App = ({ navigation, ...rest }) => {
           title: 'ACNH FishTrack',
         }}
       />
+
       <Stack.Screen
         name="Settings"
         component={Settings}

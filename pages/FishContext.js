@@ -17,18 +17,18 @@ const counterContextWrapper = (component) => ({
   },
 });
 
-export const CounterContext = React.createContext({});
+export const FishContext = React.createContext({});
 
-export class CounterContextProvider extends React.Component {
+export class FishContextProvider extends React.Component {
   state = {
     context: counterContextWrapper(this),
   };
 
   render() {
     return (
-      <CounterContext.Provider value={this.state.context}>
+      <FishContext.Provider value={this.state.context}>
         {this.props.children}
-      </CounterContext.Provider>
+      </FishContext.Provider>
     );
   }
 }
