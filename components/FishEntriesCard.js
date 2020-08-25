@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { ScrollView } from 'react-native';
 import { Card } from 'react-native-elements';
 import { FishEntry } from './FishEntry';
 

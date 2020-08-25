@@ -3,6 +3,7 @@ import React, { useState, useContext } from 'react';
 import { StyleSheet, Text, ScrollView } from 'react-native';
 import { fishData } from '../../data/fishdata';
 import { FishEntry } from '../../components/FishEntry';
+import { FishEntriesCard } from '../../components/FishEntriesCard';
 import { FishContext } from '../FishContext';
 
 //TODO: abstract the dynamic list stuff into its own hook,
@@ -59,22 +60,19 @@ export const Feed = () => {
           <Text
             style={styles.header}
           >{`You can catch ${newCatchableNow} NEW fish right now!`}</Text>
-          <ScrollView style={styles.catchableNowView}>
-            {Object.keys(catchableNow)
-              .filter((key) => !(key in caughtFish))
-              .map((key) => (
-                <FishEntry
-                  fishData={catchableNow[key]}
-                  key={key}
-                  openAction={() => _entryPress(key)}
-                  caught={key in caughtFish}
-                  actions={{
-                    caughtPress: () => _caughtPress(key),
-                    //uncaughtPress: () => _uncaughtPress(key),
-                  }}
-                />
-              ))}
-          </ScrollView>
+          <FishEntriesCard
+              fishData={fishData}
+              keys={Object.keys(catchableNow)
+                .filter((key) => !(key in caughtFish))}
+              caughtCheck={(key) => key in caughtFish}
+              caughtCheck={(key) => key in caughtFish}
+              openAction={(key) => _entryPress(key)}
+              actions={(key) => {
+                return {
+                  caughtPress: () => _caughtPress(key),
+                };
+              }}
+            />
         </>
       )}
       {showNewCatchableLater && (
