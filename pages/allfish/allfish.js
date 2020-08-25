@@ -6,9 +6,10 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
+  //Button,
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import { Card, ListItem, Button, Icon } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 import { fishData } from '../../data/fishdata';
 import { FishEntry } from '../../components/FishEntry';
@@ -119,7 +120,7 @@ export const AllFish = () => {
         )}
 
         <Ionicons
-          name={(ascending) ? "md-arrow-round-up" : "md-arrow-round-down"}
+          name={ascending ? 'md-arrow-round-up' : 'md-arrow-round-down'}
           onPress={() => setAscending(!ascending)}
           size={32}
           color="black"
@@ -138,27 +139,29 @@ export const AllFish = () => {
         <>
           {/* TODO: incorporate some way to sort ascending/descending, no one wants price ascending */}
           <ScrollView contentContainerStyle={styles.allFishScroll}>
-            {Object.keys(fishData)
-              .filter((key) => _handleFilters(key))
-              .sort((a, b) => {
-                if (ascending) {
-                  return fishData[a][sortBy] > fishData[b][sortBy];
-                } else {
-                  return fishData[a][sortBy] < fishData[b][sortBy];
-                }
-              })
-              .map((key) => (
-                <FishEntry
-                  fishData={fishData[key]}
-                  key={key}
-                  openAction={() => _entryPress(key)}
-                  caught={key in caughtFish}
-                  actions={{
-                    caughtPress: () => _caughtPress(key),
-                    uncaughtPress: () => _uncaughtPress(key),
-                  }}
-                />
-              ))}
+            <Card containerStyle={{ padding: 0 }} style={{ flex: 1 }}>
+              {Object.keys(fishData)
+                .filter((key) => _handleFilters(key))
+                .sort((a, b) => {
+                  if (ascending) {
+                    return fishData[a][sortBy] > fishData[b][sortBy];
+                  } else {
+                    return fishData[a][sortBy] < fishData[b][sortBy];
+                  }
+                })
+                .map((key) => (
+                  <FishEntry
+                    fishData={fishData[key]}
+                    key={key}
+                    openAction={() => _entryPress(key)}
+                    caught={key in caughtFish}
+                    actions={{
+                      caughtPress: () => _caughtPress(key),
+                      uncaughtPress: () => _uncaughtPress(key),
+                    }}
+                  />
+                ))}
+            </Card>
           </ScrollView>
         </>
       )}
