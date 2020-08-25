@@ -27,7 +27,9 @@ export const FishEntry = ({
           style={{ width: '100%' }}
         >
           <View style={{ padding: 10, flexDirection: 'row' }}>
-            <Text>{fishData.name}</Text>
+            <Text style={styles.primary}>{fishData.name}</Text>
+            <Text style={styles.secondary}>{`  -  ${fishData.location}`}</Text>
+            <Text style={styles.secondary}>{`  -  ${fishData.shadowSize} Shadow`}</Text>
             <View style={{ flexDirection: 'row', marginLeft: 'auto' }}>
               <TouchableHighlight
                 onPress={caught ? actions.uncaughtPress : actions.caughtPress}
@@ -60,5 +62,7 @@ const styles = StyleSheet.create({
   entryView: {
     flexDirection: 'row',
   },
+  primary: { fontSize: 16, textAlignVertical: 'center' },
+  secondary: { color: 'grey', fontSize: 12, textAlignVertical: 'center' },
   fishAction: {},
 });

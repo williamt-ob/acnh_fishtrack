@@ -12,32 +12,22 @@ import { Button } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 import { fishData } from '../../data/fishdata';
 import { FishEntriesCard } from '../../components/FishEntriesCard';
-import { FishModal } from '../../components/FishModal';
 import { FishContext } from '../FishContext';
 
 // TODO: import CheckBox from '@react-native-community/react-native-checkbox';
 
-const sortOptions = ['Value', 'Name'];
+const sortOptions = ['Name', 'Value'];
 
 export const AllFish = () => {
   // Object holding caught fish info
-  const {
-    caughtFish,
-    uncaughtFish,
-    catchableTodayNotNow,
-    catchableNow,
-    _caughtPress,
-    _uncaughtPress,
-    _entryPress,
-  } = useContext(FishContext);
+  const { caughtFish, _caughtPress, _uncaughtPress, _entryPress } = useContext(
+    FishContext
+  );
 
   // For setting sort type
   const [sortBy, setSortBy] = useState('name');
 
   const [loading, setLoading] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
-  // For setting which data will be sent to modal, prevents using multiple modals
-  const [selectedFishData, setSelectedFishData] = useState({});
 
   // Checkbox for setting what's catchable (will make checkbox)
   const [uncaughtOnly, setUncaughtOnly] = useState(false);
@@ -68,14 +58,13 @@ export const AllFish = () => {
               />
             ))}
           </Picker>
-          {uncaughtOnly ? (
-            <Button
-              title="Only Uncaught"
-              onPress={() => setUncaughtOnly(false)}
-            />
-          ) : (
-            <Button title="All Fish" onPress={() => setUncaughtOnly(true)} />
-          )}
+          <Text>Uncaught Only</Text>
+          <Ionicons
+            name={uncaughtOnly ? 'md-checkbox' : 'md-checkbox-outline'}
+            onPress={() => setUncaughtOnly(!uncaughtOnly)}
+            size={32}
+            color="black"
+          />
 
           <Ionicons
             name={ascending ? 'md-arrow-round-down' : 'md-arrow-round-up'}

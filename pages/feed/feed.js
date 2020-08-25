@@ -17,7 +17,6 @@ export const Feed = () => {
 
   const {
     caughtFish,
-    uncaughtFish,
     catchableTodayNotNow,
     catchableNow,
     _caughtPress,
@@ -28,9 +27,7 @@ export const Feed = () => {
   // For setting sort type
 
   const [loading, setLoading] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
   // For setting which data will be sent to modal, prevents using multiple modals
-  const [selectedFishData, setSelectedFishData] = useState({});
 
   const newCatchableNow = Object.keys(catchableNow).filter(
     (key) => !(key in caughtFish)
