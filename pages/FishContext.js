@@ -1,34 +1,23 @@
-import React from 'react';
-
-// Declaring the state object globally.
-const initialCounterState = {
-  count: 0,
-};
-
-const counterContextWrapper = (component) => ({
-  ...initialCounterState,
-  increment: () => {
-    initialCounterState.count += 1;
-    component.setState({ context: counterContextWrapper(component) });
-  },
-  decrement: () => {
-    initialCounterState.count -= 1;
-    component.setState({ context: counterContextWrapper(component) });
-  },
-});
+import React, { useState, useEffect } from 'react';
 
 export const FishContext = React.createContext({});
 
-export class FishContextProvider extends React.Component {
-  state = {
-    context: counterContextWrapper(this),
-  };
+export const FishContextProvider = (props) => {
+  const [count, setCount] = useState(1);
 
-  render() {
-    return (
-      <FishContext.Provider value={this.state.context}>
-        {this.props.children}
-      </FishContext.Provider>
-    );
+  const increment = () => {
+    setCount(count + 1);
   }
-}
+
+  const decrement = () => {
+    setCount(count - 1);
+  }
+
+  const context = {count, increment, decrement};
+
+  return (
+    <FishContext.Provider value={context}>
+      {props.children}
+    </FishContext.Provider>
+  );
+};
