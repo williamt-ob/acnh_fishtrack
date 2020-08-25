@@ -65,7 +65,6 @@ export const Feed = () => {
               keys={Object.keys(catchableNow)
                 .filter((key) => !(key in caughtFish))}
               caughtCheck={(key) => key in caughtFish}
-              caughtCheck={(key) => key in caughtFish}
               openAction={(key) => _entryPress(key)}
               actions={(key) => {
                 return {
@@ -79,16 +78,19 @@ export const Feed = () => {
         <>
           <Text
             style={styles.header}
-          >{`You can catch ${newCatchableLater} NEW fish later today now!`}</Text>
-          <ScrollView style={styles.catchableNowView}>
-            <ScrollView style={styles.catchableNowView}>
-              {Object.keys(catchableTodayNotNow)
-                .filter((key) => !(key in caughtFish))
-                .map((key) => (
-                  <Text key={key}>{catchableTodayNotNow[key].name}</Text>
-                ))}
-            </ScrollView>
-          </ScrollView>
+          >{`You can catch ${newCatchableLater} NEW fish later today!`}</Text>
+          <FishEntriesCard
+              fishData={fishData}
+              keys={Object.keys(catchableTodayNotNow)
+                .filter((key) => !(key in caughtFish))}
+              caughtCheck={(key) => key in caughtFish}
+              openAction={(key) => _entryPress(key)}
+              actions={(key) => {
+                return {
+                  caughtPress: () => _caughtPress(key),
+                };
+              }}
+            />
         </>
       )}
       {showNewCatchableNow && (
