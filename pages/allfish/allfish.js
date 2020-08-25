@@ -28,6 +28,7 @@ export const AllFish = () => {
     catchableNow,
     _caughtPress,
     _uncaughtPress,
+    _entryPress,
   } = useContext(FishContext);
 
   // For setting sort type
@@ -42,11 +43,6 @@ export const AllFish = () => {
   const [uncaughtOnly, setUncaughtOnly] = useState(false);
   // TOOD: make a dynamic icon button with up/down
   const [ascending, setAscending] = useState(true);
-
-  const _entryPress = async (key) => {
-    setSelectedFishData(fishData[key]);
-    setModalOpen(true);
-  };
 
   const _handleFilters = (key) => {
     if (uncaughtOnly && key in caughtFish) {
@@ -82,18 +78,12 @@ export const AllFish = () => {
           )}
 
           <Ionicons
-            name={ascending ? 'md-arrow-round-up' : 'md-arrow-round-down'}
+            name={ascending ? 'md-arrow-round-down' : 'md-arrow-round-up'}
             onPress={() => setAscending(!ascending)}
             size={32}
             color="black"
           />
         </View>
-
-        <FishModal
-          open={modalOpen}
-          fishData={selectedFishData}
-          handleClose={() => setModalOpen(false)}
-        />
 
         {loading ? (
           <Text>Loading...</Text>

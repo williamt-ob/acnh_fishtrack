@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import { fishData } from '../data/fishdata';
 import { isCatchable } from '../common/catchablenow';
+import { FishModal } from '../components/FishModal';
 
 export const FishContext = React.createContext({});
 
@@ -13,6 +14,10 @@ export const FishContextProvider = (props) => {
   const [uncaughtFish, setUncaughtFish] = useState({});
   const [catchableTodayNotNow, setCatchableTodayNotNow] = useState({});
   const [catchableNow, setCatchableNow] = useState({});
+
+  // For the Fish Modal
+  const [selectedFishData, setSelectedFishData] = useState({});
+  const [modalOpen, setModalOpen] = useState(false);
 
   const increment = () => {
     setCount(count + 1);
@@ -64,6 +69,11 @@ export const FishContextProvider = (props) => {
     inner(state);
   }, []);
 
+  const _entryPress = async (key) => {
+    setSelectedFishData(fishData[key]);
+    setModalOpen(true);
+  };
+
   const _caughtPress = async (value) => {
     // setLoading(true);
     try {
@@ -101,11 +111,17 @@ export const FishContextProvider = (props) => {
     catchableNow,
     _caughtPress,
     _uncaughtPress,
+    _entryPress,
   };
 
   return (
     <FishContext.Provider value={context}>
       {props.children}
+      <FishModal
+        open={modalOpen}
+        fishData={selectedFishData}
+        handleClose={() => setModalOpen(false)}
+      />
     </FishContext.Provider>
   );
 };

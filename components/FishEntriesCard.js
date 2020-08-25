@@ -11,7 +11,6 @@ export const FishEntriesCard = ({
   actions,
   ...rest
 }) => {
-  console.log(keys);
   return (
     <Card containerStyle={{ padding: 0 }} style={{ flex: 1 }}>
       {keys.map((key) => (

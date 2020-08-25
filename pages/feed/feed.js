@@ -21,6 +21,7 @@ export const Feed = () => {
     catchableTodayNotNow,
     catchableNow,
     _caughtPress,
+    _entryPress,
   } = useContext(FishContext);
 
   // Object holding caught fish info
@@ -30,11 +31,6 @@ export const Feed = () => {
   const [modalOpen, setModalOpen] = useState(false);
   // For setting which data will be sent to modal, prevents using multiple modals
   const [selectedFishData, setSelectedFishData] = useState({});
-
-  const _entryPress = async (key) => {
-    setSelectedFishData(fishData[key]);
-    setModalOpen(true);
-  };
 
   const newCatchableNow = Object.keys(catchableNow).filter(
     (key) => !(key in caughtFish)
@@ -61,17 +57,18 @@ export const Feed = () => {
             style={styles.header}
           >{`You can catch ${newCatchableNow} NEW fish right now!`}</Text>
           <FishEntriesCard
-              fishData={fishData}
-              keys={Object.keys(catchableNow)
-                .filter((key) => !(key in caughtFish))}
-              caughtCheck={(key) => key in caughtFish}
-              openAction={(key) => _entryPress(key)}
-              actions={(key) => {
-                return {
-                  caughtPress: () => _caughtPress(key),
-                };
-              }}
-            />
+            fishData={fishData}
+            keys={Object.keys(catchableNow).filter(
+              (key) => !(key in caughtFish)
+            )}
+            caughtCheck={(key) => key in caughtFish}
+            openAction={(key) => _entryPress(key)}
+            actions={(key) => {
+              return {
+                caughtPress: () => _caughtPress(key),
+              };
+            }}
+          />
         </>
       )}
       {showNewCatchableLater && (
@@ -80,17 +77,18 @@ export const Feed = () => {
             style={styles.header}
           >{`You can catch ${newCatchableLater} NEW fish later today!`}</Text>
           <FishEntriesCard
-              fishData={fishData}
-              keys={Object.keys(catchableTodayNotNow)
-                .filter((key) => !(key in caughtFish))}
-              caughtCheck={(key) => key in caughtFish}
-              openAction={(key) => _entryPress(key)}
-              actions={(key) => {
-                return {
-                  caughtPress: () => _caughtPress(key),
-                };
-              }}
-            />
+            fishData={fishData}
+            keys={Object.keys(catchableTodayNotNow).filter(
+              (key) => !(key in caughtFish)
+            )}
+            caughtCheck={(key) => key in caughtFish}
+            openAction={(key) => _entryPress(key)}
+            actions={(key) => {
+              return {
+                caughtPress: () => _caughtPress(key),
+              };
+            }}
+          />
         </>
       )}
       {showNewCatchableNow && (
