@@ -39,7 +39,9 @@ export const Feed = () => {
     setModalOpen(true);
   };
 
-  const newCatchableNow = Object.keys(catchableNow).length; //TODO: make this dynamic
+  const newCatchableNow = Object.keys(catchableNow).filter(
+    (key) => !(key in caughtFish)
+  ).length;
   const newCatchableLater = Object.keys(catchableTodayNotNow).length;
 
   const showNewCatchableNow = newCatchableNow > 0;
