@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   ScrollView,
   Picker,
@@ -14,6 +14,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { fishData } from '../../data/fishdata';
 import { FishEntry } from '../../components/FishEntry';
 import { FishModal } from '../../components/FishModal';
+import { FishContext } from '../FishContext';
 
 // TODO: import CheckBox from '@react-native-community/react-native-checkbox';
 
@@ -21,7 +22,15 @@ const sortOptions = ['Value', 'Name'];
 
 export const AllFish = () => {
   // Object holding caught fish info
-  const [caughtFish, setCaughtFish] = useState({});
+  const {
+    caughtFish,
+    uncaughtFish,
+    catchableTodayNotNow,
+    catchableNow,
+    _caughtPress,
+    _uncaughtPress,
+  } = useContext(FishContext);
+
   // For setting sort type
   const [sortBy, setSortBy] = useState('name');
 
@@ -35,52 +44,6 @@ export const AllFish = () => {
   // TOOD: make a dynamic icon button with up/down
   const [ascending, setAscending] = useState(true);
 
-  useEffect((state) => {
-    const inner = async (state) => {
-      try {
-        const value = await AsyncStorage.getItem('caughtFish');
-        if (value !== null) {
-          setCaughtFish(JSON.parse(value));
-        }
-      } catch (e) {
-        console.log(e);
-        // error reading value
-      } finally {
-        setLoading(false);
-      }
-    };
-    inner(state);
-  }, []);
-
-  const _caughtPress = async (value) => {
-    setLoading(true);
-    try {
-      const newCaught = { ...caughtFish };
-      newCaught[value] = {};
-      const jsonValue = JSON.stringify(newCaught);
-      await AsyncStorage.setItem('caughtFish', jsonValue);
-      setCaughtFish(newCaught);
-    } catch (e) {
-      console.log(e);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const _uncaughtPress = async (value) => {
-    setLoading(true);
-    try {
-      const newCaught = { ...caughtFish };
-      delete newCaught[value];
-      const jsonValue = JSON.stringify(newCaught);
-      await AsyncStorage.setItem('caughtFish', jsonValue);
-      setCaughtFish(newCaught);
-    } catch (e) {
-      console.log(e);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const _entryPress = async (key) => {
     setSelectedFishData(fishData[key]);
