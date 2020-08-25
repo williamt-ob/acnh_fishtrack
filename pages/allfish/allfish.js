@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   ScrollView,
   Picker,
@@ -8,12 +8,10 @@ import {
   View,
   //Button,
 } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
-import { Card, ListItem, Button, Icon } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 import { fishData } from '../../data/fishdata';
 import { FishEntriesCard } from '../../components/FishEntriesCard';
-import { FishEntry } from '../../components/FishEntry';
 import { FishModal } from '../../components/FishModal';
 import { FishContext } from '../FishContext';
 
