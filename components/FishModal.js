@@ -22,10 +22,10 @@ export const FishModal = ({ fishData, open, handleClose, ...rest }) => {
       onBack={handleClose}
     >
       <Text style={styles.fishTitle}>{fishData.name}</Text>
-      <Text style={styles.fishHeader}>{fishData.location}</Text>
+      <Text style={styles.fishHeader}>{`Location: ${fishData.location}`}</Text>
       <Text
         style={styles.fishHeader}
-      >{`${fishData.shadowSize} Shadow Size`}</Text>
+      >{`Shadow Size: ${fishData.shadowSize}`}</Text>
       <Text style={styles.fishHeader}>{`Catchable: ${fishData.time}`}</Text>
       <Text
         style={styles.fishHeader}
@@ -40,7 +40,6 @@ export const FishModal = ({ fishData, open, handleClose, ...rest }) => {
         source={fishShadows[fishData.shadowSize]}
       />
       {/* TODO: add an image of the fish location on a map */}
-      {/* TODO: add an image of the fish relative shadow size */}
     </Modal>
   );
 };
