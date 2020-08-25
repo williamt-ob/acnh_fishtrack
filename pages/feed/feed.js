@@ -2,7 +2,6 @@ import 'react-native-gesture-handler';
 import React, { useState, useContext } from 'react';
 import { StyleSheet, Text, ScrollView } from 'react-native';
 import { fishData } from '../../data/fishdata';
-import { FishEntry } from '../../components/FishEntry';
 import { FishEntriesCard } from '../../components/FishEntriesCard';
 import { FishContext } from '../FishContext';
 

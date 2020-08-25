@@ -8,7 +8,6 @@ import {
   View,
   //Button,
 } from 'react-native';
-import { Button } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 import { fishData } from '../../data/fishdata';
 import { FishEntriesCard } from '../../components/FishEntriesCard';
@@ -58,7 +57,7 @@ export const AllFish = () => {
               />
             ))}
           </Picker>
-          <Text>Uncaught Only</Text>
+          <Text style={styles.primary}>Uncaught Only</Text>
           <Ionicons
             name={uncaughtOnly ? 'md-checkbox' : 'md-checkbox-outline'}
             onPress={() => setUncaughtOnly(!uncaughtOnly)}
@@ -111,6 +110,7 @@ const styles = StyleSheet.create({
   allFishScroll: {
     //paddingVertical: 20,
   },
+  primary: { fontSize: 16, textAlignVertical: 'center' },
   filterRow: {
     flexDirection: 'row',
   },
