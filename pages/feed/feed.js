@@ -12,7 +12,6 @@ import { FishContext } from '../FishContext';
 
 export const Feed = () => {
   //TODO: make the hemisphere dynamic/an option
-  const hemisphere = 'north';
 
   const {
     caughtFish,

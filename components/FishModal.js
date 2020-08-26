@@ -1,11 +1,9 @@
 import 'react-native-gesture-handler';
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Modal,
   StyleSheet,
   Text,
-  View,
-  TouchableHighlight,
   Button,
   Image,
 } from 'react-native';

@@ -9,6 +9,8 @@ export const FishContext = React.createContext({});
 export const FishContextProvider = (props) => {
   const [count, setCount] = useState(1);
 
+  const [hemisphere, setHemisphere] = useState('north');
+
   // Handful of state-based objects for computing fish progress
   const [caughtFish, setCaughtFish] = useState({});
   const [uncaughtFish, setUncaughtFish] = useState({});
@@ -26,7 +28,32 @@ export const FishContextProvider = (props) => {
   const decrement = () => {
     setCount(count - 1);
   };
-  const hemisphere = 'north';
+
+  useEffect((state) => {
+    const inner = async (state) => {
+      try {
+        const catchableTodayNotNowTmp = {};
+        const catchableNowTmp = {};
+        Object.keys(fishData).forEach((key) => {
+          const catchable = isCatchable(fishData[key], hemisphere);
+          if (catchable.catchableNow) {
+            catchableNowTmp[key] = { ...fishData[key] }; //Copy just in-case
+          } else if (catchable.catchableToday) {
+            catchableTodayNotNowTmp[key] = { ...fishData[key] }; //Copy just in-case
+          }
+        });
+        setCatchableTodayNotNow(catchableTodayNotNowTmp);
+        setCatchableNow(catchableNowTmp);        
+
+      } catch (e) {
+        console.log(e);
+        // error reading value
+      } finally {
+        // setLoading(false);
+      }
+    };
+    inner(state);
+  }, [fishData, hemisphere]);
 
   useEffect((state) => {
     const inner = async (state) => {
@@ -59,6 +86,18 @@ export const FishContextProvider = (props) => {
         });
         setCatchableTodayNotNow(catchableTodayNotNowTmp);
         setCatchableNow(catchableNowTmp);
+
+
+        const hem = await AsyncStorage.getItem('hemisphere');
+        if (hem !== null) {
+          setHemisphere(hem);
+          console.log('heererer');
+        }
+        else {
+          await AsyncStorage.setItem('hemisphere', 'north');
+        }
+        
+
       } catch (e) {
         console.log(e);
         // error reading value
@@ -89,6 +128,18 @@ export const FishContextProvider = (props) => {
     }
   };
 
+  const _updateHemisphere = async (value) => {
+    // setLoading(true);
+    try {
+      await AsyncStorage.setItem('hemisphere', value);
+      setHemisphere(value);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      // setLoading(false);
+    }
+  };
+
   const _uncaughtPress = async (value) => {
     // setLoading(true);
     try {
@@ -107,11 +158,13 @@ export const FishContextProvider = (props) => {
   const context = {
     caughtFish,
     uncaughtFish,
+    hemisphere,
     catchableTodayNotNow,
     catchableNow,
     _caughtPress,
     _uncaughtPress,
     _entryPress,
+    _updateHemisphere,
   };
 
   return (

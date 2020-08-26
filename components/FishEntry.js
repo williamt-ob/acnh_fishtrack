@@ -1,12 +1,10 @@
 import 'react-native-gesture-handler';
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  Picker,
   StyleSheet,
   Text,
   View,
   TouchableHighlight,
-  Button,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
@@ -16,7 +14,6 @@ export const FishEntry = ({
   openAction,
   caught,
   actions,
-  ...rest
 }) => {
   return (
     <>

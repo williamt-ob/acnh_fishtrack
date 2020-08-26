@@ -1,12 +1,12 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Feed } from './pages/feed/feed';
 import { AllFish } from './pages/allfish/allfish';
-import { LeaderBoards } from './pages/leaderboards/leaderboards';
 import { Settings } from './pages/settings/settings';
 import { Map } from './pages/map/map';
 import { FishContextProvider } from './pages/FishContext';
@@ -14,20 +14,26 @@ import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Navigator types, used for title bar and for tabs
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 // Tabs are cool
 function TabBar() {
   return (
     <FishContextProvider>
-      <Tab.Navigator initialRouteName="Home" shifting={true}>
+      <Tab.Navigator
+        initialRouteName="Home"
+        shifting={true}
+        tabBarOptions={{
+          activeTintColor: 'purple',
+          inactiveTintColor: 'gray',
+        }}
+      >
         <Tab.Screen
           name="Home"
           options={{
-            tabBarColor: '#a0a6e2',
             tabBarIcon: ({ color }) => (
-              <Ionicons name="md-home" color="white" size={26} />
+              <Ionicons name="md-home" color={color} size={26} />
             ),
           }}
           component={Feed}
@@ -35,9 +41,8 @@ function TabBar() {
         <Tab.Screen
           name="All Fish"
           options={{
-            tabBarColor: '#8a84ce',
             tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="fish" color="white" size={26} />
+              <MaterialCommunityIcons name="fish" color={color} size={26} />
             ),
           }}
           component={AllFish}
@@ -45,22 +50,20 @@ function TabBar() {
         <Tab.Screen
           name="Map"
           options={{
-            tabBarColor: '#ffb1c1',
             tabBarIcon: ({ color }) => (
-              <Ionicons name="md-map" color="white" size={26} />
+              <Ionicons name="md-map" color={color} size={26} />
             ),
           }}
           component={Map}
         />
         <Tab.Screen
-          name="Leaders"
+          name="Settings"
           options={{
-            tabBarColor: '#ff9391',
             tabBarIcon: ({ color }) => (
-              <Ionicons name="md-trophy" color="white" size={26} />
+              <Ionicons name="md-settings" color={color} size={26} />
             ),
           }}
-          component={LeaderBoards}
+          component={Settings}
         />
       </Tab.Navigator>
     </FishContextProvider>
