@@ -45,7 +45,7 @@ export const AllFish = () => {
     <>
       <ScrollView>
         <View style={styles.filterRow}>
-          <Text>Sort By</Text>
+          <Text style={{ fontWeight: 'bold' }}>Sort By</Text>
           <Picker
             selectedValue={sortBy}
             style={{ height: 50, width: 150 }}
@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
   primary: { fontSize: 16, textAlignVertical: 'center' },
   filterRow: {
     flexDirection: 'row',
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
   },
