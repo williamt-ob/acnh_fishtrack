@@ -8,6 +8,7 @@ import {
   View,
   //Button,
 } from 'react-native';
+import { CheckBox } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 import { fishData } from '../../data/fishdata';
 import { FishEntriesCard } from '../../components/FishEntriesCard';
@@ -57,14 +58,11 @@ export const AllFish = () => {
               />
             ))}
           </Picker>
-          <Text style={styles.primary}>Uncaught Only</Text>
-          <Ionicons
-            name={uncaughtOnly ? 'md-checkbox' : 'md-checkbox-outline'}
+          <CheckBox
+            title="Uncaught Only"
+            checked={uncaughtOnly}
             onPress={() => setUncaughtOnly(!uncaughtOnly)}
-            size={32}
-            color="black"
           />
-
           <Ionicons
             name={ascending ? 'md-arrow-round-down' : 'md-arrow-round-up'}
             onPress={() => setAscending(!ascending)}
