@@ -1,9 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { useContext } from 'react';
-import {
-  Picker,
-  //Button,
-} from 'react-native';
+import { Picker, Text } from 'react-native';
 import { FishContext } from '../FishContext';
 
 const hemOptions = ['North', 'South'];
@@ -13,8 +10,10 @@ export const Settings = () => {
 
   return (
     <>
+      <Text>Hemisphere</Text>
       <Picker
         selectedValue={hemisphere}
+        prompt="Hemisphere"
         style={{ height: 50, width: 150 }}
         onValueChange={(itemValue, itemIndex) => _updateHemisphere(itemValue)}
       >
