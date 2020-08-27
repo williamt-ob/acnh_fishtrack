@@ -54,7 +54,12 @@ const _isCatchableToday = (fishData, today, hemisphere) => {
 
     const month = today.getMonth();
 
-    const inRange = month >= lower && month <= upper;
+    let inRange = false;
+    if (upper >= lower) {
+      inRange = month >= lower && month <= upper;
+    } else if (upper < lower) {
+      inRange = month <= lower || month >= upper;
+    }
 
     if (inRange) {
       return true;
@@ -73,23 +78,24 @@ const _isCatchableRightNow = (fishData, today) => {
 
   const timeRanges = timeString.split(' - ');
   let [lower, upper] = timeRanges;
-
+  lower = parseInt(lower, 10);
+  upper = parseInt(upper, 10);
   //TODO: convert to int, can't remember how lol
 
   //TODO: make some unit tests for this
 
   const hours = today.getHours();
 
-  if (
-    (hours >= lower && hours <= upper) ||
-    (hours >= upper && hours <= lower)
-  ) {
-    return [true, false];
+  let inRange = [false, false];
+  if (upper >= lower && hours >= lower && hours <= upper) {
+    inRange = [true, false];
+  } else if (upper < lower && (hours <= lower || hours >= upper)) {
+    inRange = [true, false];
   } else if (hours <= lower) {
     return [false, true];
   }
 
-  return [false, false];
+  return inRange;
 };
 
 export const isCatchable = (fishData, hemisphere) => {

@@ -9,7 +9,7 @@ export const FishContext = React.createContext({});
 export const FishContextProvider = (props) => {
   const [count, setCount] = useState(1);
 
-  const [hemisphere, setHemisphere] = useState('north');
+  const [hemisphere, setHemisphere] = useState('south');
 
   // Handful of state-based objects for computing fish progress
   const [caughtFish, setCaughtFish] = useState({});
@@ -29,31 +29,33 @@ export const FishContextProvider = (props) => {
     setCount(count - 1);
   };
 
-  useEffect((state) => {
-    const inner = async (state) => {
-      try {
-        const catchableTodayNotNowTmp = {};
-        const catchableNowTmp = {};
-        Object.keys(fishData).forEach((key) => {
-          const catchable = isCatchable(fishData[key], hemisphere);
-          if (catchable.catchableNow) {
-            catchableNowTmp[key] = { ...fishData[key] }; //Copy just in-case
-          } else if (catchable.catchableToday) {
-            catchableTodayNotNowTmp[key] = { ...fishData[key] }; //Copy just in-case
-          }
-        });
-        setCatchableTodayNotNow(catchableTodayNotNowTmp);
-        setCatchableNow(catchableNowTmp);        
-
-      } catch (e) {
-        console.log(e);
-        // error reading value
-      } finally {
-        // setLoading(false);
-      }
-    };
-    inner(state);
-  }, [fishData, hemisphere]);
+  useEffect(
+    (state) => {
+      const inner = async (state) => {
+        try {
+          const catchableTodayNotNowTmp = {};
+          const catchableNowTmp = {};
+          Object.keys(fishData).forEach((key) => {
+            const catchable = isCatchable(fishData[key], hemisphere);
+            if (catchable.catchableNow) {
+              catchableNowTmp[key] = { ...fishData[key] }; //Copy just in-case
+            } else if (catchable.catchableToday) {
+              catchableTodayNotNowTmp[key] = { ...fishData[key] }; //Copy just in-case
+            }
+          });
+          setCatchableTodayNotNow(catchableTodayNotNowTmp);
+          setCatchableNow(catchableNowTmp);
+        } catch (e) {
+          console.log(e);
+          // error reading value
+        } finally {
+          // setLoading(false);
+        }
+      };
+      inner(state);
+    },
+    [fishData, hemisphere]
+  );
 
   useEffect((state) => {
     const inner = async (state) => {
@@ -62,7 +64,20 @@ export const FishContextProvider = (props) => {
         if (value !== null) {
           setCaughtFish(JSON.parse(value));
         }
+        const hem = await AsyncStorage.getItem('hemisphere');
+        if (hem !== null) {
+          setHemisphere(hem);
+          console.log(hem);
+        }
 
+
+      } catch (e) {
+        console.log(e);
+        // error reading value
+      } finally {
+        // setLoading(false);
+        // Filters based on date critieria to get a list of catchable
+        // for today and right now
         // Dynamically make the uncaught list based off of this
         const uncaughtTmp = {};
         Object.keys(fishData).forEach((key) => {
@@ -71,9 +86,6 @@ export const FishContextProvider = (props) => {
           }
         });
         setUncaughtFish(uncaughtTmp);
-
-        // Filters based on date critieria to get a list of catchable
-        // for today and right now
         const catchableTodayNotNowTmp = {};
         const catchableNowTmp = {};
         Object.keys(fishData).forEach((key) => {
@@ -86,23 +98,6 @@ export const FishContextProvider = (props) => {
         });
         setCatchableTodayNotNow(catchableTodayNotNowTmp);
         setCatchableNow(catchableNowTmp);
-
-
-        const hem = await AsyncStorage.getItem('hemisphere');
-        if (hem !== null) {
-          setHemisphere(hem);
-          console.log('heererer');
-        }
-        else {
-          await AsyncStorage.setItem('hemisphere', 'north');
-        }
-        
-
-      } catch (e) {
-        console.log(e);
-        // error reading value
-      } finally {
-        // setLoading(false);
       }
     };
     inner(state);

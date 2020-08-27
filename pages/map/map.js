@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { Overlay } from 'react-native-elements';
 import { uniqueAreas } from '../../common/uniqueareas';
+import {fishData} from '../../data/fishdata';
 import { FishEntriesCard } from '../../components/FishEntriesCard';
 import { fishMap } from '../../common/map';
 import { FishContext } from '../FishContext';
