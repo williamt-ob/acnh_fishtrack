@@ -45,6 +45,7 @@ export const AllFish = () => {
     <>
       <ScrollView>
         <View style={styles.filterRow}>
+          <Text>Sort By</Text>
           <Picker
             selectedValue={sortBy}
             style={{ height: 50, width: 150 }}
@@ -58,16 +59,16 @@ export const AllFish = () => {
               />
             ))}
           </Picker>
-          <CheckBox
-            title="Uncaught Only"
-            checked={uncaughtOnly}
-            onPress={() => setUncaughtOnly(!uncaughtOnly)}
-          />
           <Ionicons
             name={ascending ? 'md-arrow-round-down' : 'md-arrow-round-up'}
             onPress={() => setAscending(!ascending)}
             size={32}
             color="black"
+          />
+          <CheckBox
+            title="Uncaught Only"
+            checked={uncaughtOnly}
+            onPress={() => setUncaughtOnly(!uncaughtOnly)}
           />
         </View>
 
@@ -111,5 +112,7 @@ const styles = StyleSheet.create({
   primary: { fontSize: 16, textAlignVertical: 'center' },
   filterRow: {
     flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

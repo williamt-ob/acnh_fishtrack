@@ -14,13 +14,26 @@ export const FishEntry = ({ fishData, openAction, caught, actions }) => {
           onPress={openAction}
           style={{ width: '100%' }}
         >
-          <View style={{ padding: 10, flexDirection: 'row' }}>
+          <View
+            style={{
+              padding: 10,
+              flexDirection: 'row',
+            }}
+          >
             <Text style={styles.primary}>{fishData.name}</Text>
             <Text style={styles.secondary}>{`  -  ${fishData.location}`}</Text>
             <Text
               style={styles.secondary}
             >{`  -  ${fishData.shadowSize} Shadow`}</Text>
-            <View style={{ flexDirection: 'row', marginLeft: 'auto' }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                marginLeft: 'auto',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
               <CheckBox
                 title="Caught"
                 checked={caught}
