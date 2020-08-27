@@ -39,13 +39,12 @@ export const FishEntry = ({ fishData, openAction, caught, actions }) => {
                 checked={caught}
                 onPress={caught ? actions.uncaughtPress : actions.caughtPress}
               />
-              <TouchableHighlight onPress={openAction}>
-                <MaterialCommunityIcons
-                  name="chevron-right"
-                  size={32}
-                  color="black"
-                />
-              </TouchableHighlight>
+              <MaterialCommunityIcons
+                name="chevron-right"
+                size={32}
+                color="black"
+                onPress={openAction}
+              />
             </View>
           </View>
         </TouchableHighlight>
