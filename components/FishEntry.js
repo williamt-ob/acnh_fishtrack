@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import { CheckBox } from 'react-native-elements';
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
 export const FishEntry = ({ fishData, openAction, caught, actions }) => {
@@ -27,7 +27,11 @@ export const FishEntry = ({ fishData, openAction, caught, actions }) => {
                 onPress={caught ? actions.uncaughtPress : actions.caughtPress}
               />
               <TouchableHighlight onPress={openAction}>
-                <AntDesign name="questioncircle" size={32} color="black" />
+                <MaterialCommunityIcons
+                  name="chevron-right"
+                  size={32}
+                  color="black"
+                />
               </TouchableHighlight>
             </View>
           </View>
@@ -48,6 +52,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   primary: { fontSize: 16, textAlignVertical: 'center' },
-  secondary: { color: 'grey', fontSize: 12, textAlignVertical: 'center' },
+  secondary: { color: 'grey', fontSize: 10, textAlignVertical: 'center' },
   fishAction: {},
 });
