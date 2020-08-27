@@ -1,12 +1,14 @@
 import 'react-native-gesture-handler';
 import React, { useContext } from 'react';
-import { Picker, Text } from 'react-native';
+import { Picker, Text, Button } from 'react-native';
 import { FishContext } from '../FishContext';
 
 const hemOptions = ['North', 'South'];
 
 export const Settings = () => {
-  const { hemisphere, _updateHemisphere } = useContext(FishContext);
+  const { hemisphere, _updateHemisphere, _wipeCatchable } = useContext(
+    FishContext
+  );
 
   return (
     <>
@@ -25,6 +27,11 @@ export const Settings = () => {
           />
         ))}
       </Picker>
+      <Button
+        color="red"
+        title="Wipe Caught Fish"
+        onPress={() => _wipeCatchable}
+      />
     </>
   );
 };

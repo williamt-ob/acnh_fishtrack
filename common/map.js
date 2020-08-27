@@ -1,0 +1,1 @@
+export const fishMap = require('../assets/map.png');

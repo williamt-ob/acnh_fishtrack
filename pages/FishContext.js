@@ -140,6 +140,19 @@ export const FishContextProvider = (props) => {
     }
   };
 
+  const _wipeCatchable = async () => {
+    const value = {};
+    // setLoading(true);
+    try {
+      await AsyncStorage.setItem('caughtFish', JSON.stringify(value));
+      setCaughtFish(value);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      // setLoading(false);
+    }
+  };
+
   const _uncaughtPress = async (value) => {
     // setLoading(true);
     try {
@@ -162,6 +175,7 @@ export const FishContextProvider = (props) => {
     catchableTodayNotNow,
     catchableNow,
     _caughtPress,
+    _wipeCatchable,
     _uncaughtPress,
     _entryPress,
     _updateHemisphere,

@@ -31,13 +31,14 @@ export const FishModal = ({ fishData, open, handleClose, ...rest }) => {
       <Text
         style={styles.fishHeader}
       >{`Southern Hemisphere Dates: ${fishData.southDate}`}</Text>
-      <Button title="Close" onPress={handleClose} />
+      
       <Image
         resizeMode="contain"
         style={styles.shadowImg}
         source={fishShadows[fishData.shadowSize]}
       />
       {/* TODO: add an image of the fish location on a map */}
+      <Button title="Close" onPress={handleClose} />
     </Modal>
   );
 };
