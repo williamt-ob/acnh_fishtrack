@@ -67,7 +67,6 @@ export const FishContextProvider = (props) => {
         const hem = await AsyncStorage.getItem('hemisphere');
         if (hem !== null) {
           setHemisphere(hem);
-          console.log(hem);
         }
 
 

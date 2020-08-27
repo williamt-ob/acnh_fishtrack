@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { Overlay } from 'react-native-elements';
 import { uniqueAreas } from '../../common/uniqueareas';
-import {fishData} from '../../data/fishdata';
+import { fishData } from '../../data/fishdata';
 import { FishEntriesCard } from '../../components/FishEntriesCard';
 import { fishMap } from '../../common/map';
 import { FishContext } from '../FishContext';
@@ -31,9 +31,6 @@ export const Map = () => {
   const [open, setOpen] = useState(false);
 
   const windowWidth = Dimensions.get('window').width;
-
-  console.log(windowWidth);
-  console.log(windowHeight);
 
   const ratio = windowWidth / 1280; //541 is actual image width
 
@@ -116,12 +113,13 @@ export const Map = () => {
       catchablePerArea[catchableNow[key].location].push(key);
     }
   });
+  uniqueAreas.forEach((location) => {
+    if (!(location in catchablePerArea)) {
+      catchablePerArea[location] = [];
+    }
+  });
 
-  
   const imagePress = (e) => {
-    console.log(`X: ${e.nativeEvent.locationX}`);
-    console.log(`Y: ${e.nativeEvent.locationY}`);
-
     const x = e.nativeEvent.locationX;
     const y = e.nativeEvent.locationY;
 
@@ -134,11 +132,7 @@ export const Map = () => {
         y >= regions[region].minY &&
         y <= regions[region].maxY
       ) {
-        console.log(region);
-        console.log(region.location);
-        console.log(catchablePerArea[regions[region].location]);
         setSelectedRegionFish(catchablePerArea[regions[region].location]);
-        console.log(selectedRegionFish);
         setOpen(true);
       }
     });
