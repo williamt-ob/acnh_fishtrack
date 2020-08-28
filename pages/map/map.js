@@ -16,6 +16,7 @@ import { fishData } from '../../data/fishdata';
 import { FishEntriesCard } from '../../components/FishEntriesCard';
 import { fishMap } from '../../common/map';
 import { FishContext } from '../FishContext';
+import { Ionicons } from '@expo/vector-icons';
 
 const catchFilterStatusOptions = ['All', 'Uncaught'];
 
@@ -144,9 +145,25 @@ export const Map = () => {
     <>
       <Overlay isVisible={open} onBackdropPress={() => setOpen(false)}>
         <ScrollView>
-          <Text
-            style={{ fontSize: 18, fontWeight: 'bold' }}
-          >{`Catchable Fish in ${selectedRegion}`}</Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              flex: 1,
+              alignItems: 'center',
+            }}
+          >
+            <Ionicons
+              onPress={() => setOpen(false)}
+              style={{ padding: 10 }}
+              name="md-arrow-back"
+              size={24}
+              color="black"
+            />
+            <Text
+              style={{ fontSize: 18, fontWeight: 'bold' }}
+            >{`Catchable Fish in ${selectedRegion}`}</Text>
+          </View>
+
           <FishEntriesCard
             fishData={catchableNow}
             keys={selectedRegionFish}
