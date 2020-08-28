@@ -17,14 +17,11 @@ export const Feed = () => {
     caughtFish,
     catchableTodayNotNow,
     catchableNow,
+    loading,
     _caughtPress,
     _entryPress,
   } = useContext(FishContext);
-
-  // Object holding caught fish info
-  // For setting sort type
-
-  const [loading, setLoading] = useState(false);
+  
   // For setting which data will be sent to modal, prevents using multiple modals
 
   const newCatchableNow = Object.keys(catchableNow).filter(
@@ -43,6 +40,10 @@ export const Feed = () => {
       catchablePerArea[catchableNow[key].location] += 1;
     }
   });
+
+  if (loading) {
+    return (<Text>Loading</Text>);
+  }
 
   return (
     <ScrollView>

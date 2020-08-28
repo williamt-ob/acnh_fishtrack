@@ -11,6 +11,8 @@ export const FishContextProvider = (props) => {
 
   const [hemisphere, setHemisphere] = useState('south');
 
+  const [loading, setLoading] = useState(false);
+
   // Handful of state-based objects for computing fish progress
   const [caughtFish, setCaughtFish] = useState({});
   const [uncaughtFish, setUncaughtFish] = useState({});
@@ -58,6 +60,7 @@ export const FishContextProvider = (props) => {
   );
 
   useEffect((state) => {
+    setLoading(true);
     const inner = async (state) => {
       try {
         const value = await AsyncStorage.getItem('caughtFish');
@@ -100,6 +103,7 @@ export const FishContextProvider = (props) => {
       }
     };
     inner(state);
+    setLoading(false);
   }, []);
 
   const _entryPress = async (key) => {
@@ -168,6 +172,7 @@ export const FishContextProvider = (props) => {
     hemisphere,
     catchableTodayNotNow,
     catchableNow,
+    loading,
     _caughtPress,
     _wipeCatchable,
     _uncaughtPress,
