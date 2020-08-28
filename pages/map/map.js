@@ -27,6 +27,7 @@ export const Map = () => {
   const [catchFilterStatus, setCatchFilterStatus] = useState('All');
 
   const [selectedRegionFish, setSelectedRegionFish] = useState([]);
+  const [selectedRegion, setSelectedRegion] = useState('');
 
   const [open, setOpen] = useState(false);
 
@@ -133,6 +134,7 @@ export const Map = () => {
         y <= regions[region].maxY
       ) {
         setSelectedRegionFish(catchablePerArea[regions[region].location]);
+        setSelectedRegion(regions[region].location);
         setOpen(true);
       }
     });
@@ -141,17 +143,22 @@ export const Map = () => {
   return (
     <>
       <Overlay isVisible={open} onBackdropPress={() => setOpen(false)}>
-        <FishEntriesCard
-          fishData={catchableNow}
-          keys={selectedRegionFish}
-          caughtCheck={(key) => key in caughtFish}
-          openAction={(key) => _entryPress(key)}
-          actions={(key) => {
-            return {
-              caughtPress: () => _caughtPress(key),
-            };
-          }}
-        />
+        <ScrollView>
+          <Text
+            style={{ fontSize: 18, fontWeight: 'bold' }}
+          >{`Catchable Fish in ${selectedRegion}`}</Text>
+          <FishEntriesCard
+            fishData={catchableNow}
+            keys={selectedRegionFish}
+            caughtCheck={(key) => key in caughtFish}
+            openAction={(key) => _entryPress(key)}
+            actions={(key) => {
+              return {
+                caughtPress: () => _caughtPress(key),
+              };
+            }}
+          />
+        </ScrollView>
       </Overlay>
       <Picker
         selectedValue={catchFilterStatus}
@@ -164,9 +171,7 @@ export const Map = () => {
           <Picker.Item key={option} label={option} value={option} />
         ))}
       </Picker>
-      <Text
-        style={styles.header}
-      >{`Best area to fish for the museum now!`}</Text>
+      <Text style={styles.header}>{`Catchable Fish in Each Area`}</Text>
       {Object.keys(catchablePerArea).map((area) => (
         <Text
           key={area}
@@ -230,5 +235,9 @@ const styles = StyleSheet.create({
 
     top: 0,
     left: 0,
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
   },
 });
