@@ -86,7 +86,7 @@ export const Feed = () => {
           />
         </>
       )}
-      {showNewCatchableNow && (
+      {/* {showNewCatchableNow && (
         <>
           <Text
             style={styles.header}
@@ -99,13 +99,13 @@ export const Feed = () => {
             ))}
           </ScrollView>
         </>
-      )}
-      <>
+      )} */}
+      {/* <>
         <Text style={styles.header}>{`Best area to fish for money now!`}</Text>
         <ScrollView style={styles.bestAreaView}>
           <Text>TODO: fill this in</Text>
         </ScrollView>
-      </>
+      </> */}
     </ScrollView>
   );
 };
