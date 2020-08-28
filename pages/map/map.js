@@ -177,7 +177,7 @@ export const Map = () => {
           />
         </ScrollView>
       </Overlay>
-      <Picker
+      {/* <Picker
         selectedValue={catchFilterStatus}
         style={{ height: 50, width: 150 }}
         onValueChange={(itemValue, itemIndex) =>
@@ -187,7 +187,7 @@ export const Map = () => {
         {catchFilterStatusOptions.map((option) => (
           <Picker.Item key={option} label={option} value={option} />
         ))}
-      </Picker>
+      </Picker> */}
       <Text style={styles.header}>{`Catchable Fish in Each Area`}</Text>
       {Object.keys(catchablePerArea).map((area) => (
         <Text
