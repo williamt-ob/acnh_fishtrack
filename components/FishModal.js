@@ -25,6 +25,7 @@ export const FishModal = ({ fishData, open, handleClose, ...rest }) => {
         style={styles.fishHeader}
       >{`Shadow Size: ${fishData.shadowSize}`}</Text>
       <Text style={styles.fishHeader}>{`Catchable: ${fishData.stringTime}`}</Text>
+      <Text style={styles.fishHeader}>{`Value: ${fishData.value}`}</Text>
       <Text
         style={styles.fishHeader}
       >{`Northern Hemisphere Dates: ${fishData.northDate}`}</Text>
