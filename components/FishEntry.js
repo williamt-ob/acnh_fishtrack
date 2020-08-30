@@ -59,11 +59,11 @@ export const FishEntry = ({ fishData, openAction, caught, actions }) => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = {
   entryView: {
     flexDirection: 'row',
   },
   primary: { fontSize: 16, textAlignVertical: 'center' },
   secondary: { color: 'grey', fontSize: 10, textAlignVertical: 'center' },
   fishAction: {},
-});
+};

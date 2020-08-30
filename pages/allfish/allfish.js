@@ -105,7 +105,7 @@ export const AllFish = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = {
   allFishScroll: {
     //paddingVertical: 20,
   },
@@ -116,4 +116,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-});
+};

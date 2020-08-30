@@ -245,7 +245,7 @@ export const Map = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = {
   mapImg: {
     position: 'absolute',
     flex: 1,
@@ -257,4 +257,4 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
-});
+};

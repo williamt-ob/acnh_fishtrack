@@ -12,7 +12,7 @@ import { FishContext } from '../FishContext';
 
 export const Feed = () => {
   //TODO: make the hemisphere dynamic/an option
-
+  console.log('rendering feed');
   const {
     caughtFish,
     catchableTodayNotNow,
@@ -21,7 +21,7 @@ export const Feed = () => {
     _caughtPress,
     _entryPress,
   } = useContext(FishContext);
-  
+
   // For setting which data will be sent to modal, prevents using multiple modals
 
   const newCatchableNow = Object.keys(catchableNow).filter(
@@ -111,7 +111,7 @@ export const Feed = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = {
   catchableNowView: {
     flexDirection: 'row',
   },
@@ -125,4 +125,4 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 24,
   },
-});
+};

@@ -45,7 +45,7 @@ export const FishModal = ({ fishData, open, handleClose, ...rest }) => {
 
 //TODO: improve the styling of the title/headers, find good examples
 
-const styles = StyleSheet.create({
+const styles = {
   entryView: {
     flexDirection: 'row',
   },
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   shadowImg: { flex: 1, width: null, height: null },
-});
+};
