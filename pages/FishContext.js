@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import { fishData } from '../data/fishdata';
 import { isCatchable } from '../common/catchablenow';
@@ -71,8 +71,6 @@ export const FishContextProvider = (props) => {
         if (hem !== null) {
           setHemisphere(hem);
         }
-
-
       } catch (e) {
         console.log(e);
         // error reading value
@@ -166,19 +164,22 @@ export const FishContextProvider = (props) => {
     }
   };
 
-  const context = {
-    caughtFish,
-    uncaughtFish,
-    hemisphere,
-    catchableTodayNotNow,
-    catchableNow,
-    loading,
-    _caughtPress,
-    _wipeCatchable,
-    _uncaughtPress,
-    _entryPress,
-    _updateHemisphere,
-  };
+  const context = useMemo(
+    () => ({
+      caughtFish,
+      uncaughtFish,
+      hemisphere,
+      catchableTodayNotNow,
+      catchableNow,
+      loading,
+      _caughtPress,
+      _wipeCatchable,
+      _uncaughtPress,
+      _entryPress,
+      _updateHemisphere,
+    }),
+    [caughtFish, hemisphere]
+  );
 
   return (
     <FishContext.Provider value={context}>
